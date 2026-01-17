@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Cores institucionais verde AGERJI */
+  --color-primary: oklch(0.45 0.15 145);
+  --color-primary-foreground: oklch(0.98 0.01 145);
+  --color-secondary: oklch(0.95 0.03 145);
+  --color-secondary-foreground: oklch(0.25 0.05 145);
+  --color-accent: oklch(0.35 0.12 145);
+  --color-accent-foreground: oklch(0.98 0.01 145);
+  
+  /* Background e foreground */
+  --color-background: oklch(0.98 0.005 145);
+  --color-foreground: oklch(0.15 0.02 145);
+  
+  /* Muted */
+  --color-muted: oklch(0.94 0.01 145);
+  --color-muted-foreground: oklch(0.45 0.03 145);
+  
+  /* Card */
+  --color-card: oklch(1 0 0);
+  --color-card-foreground: oklch(0.15 0.02 145);
+  
+  /* Border */
+  --color-border: oklch(0.88 0.02 145);
+  
+  /* Destructive */
+  --color-destructive: oklch(0.55 0.2 25);
+  --color-destructive-foreground: oklch(0.98 0.01 25);
+  
+  /* Radius */
+  --radius: 0.5rem;
+  
+  /* Font */
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Base styles */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+/* Skip links for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  padding: 8px 16px;
+  z-index: 100;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* High contrast mode */
+.high-contrast {
+  --color-background: oklch(0 0 0);
+  --color-foreground: oklch(1 0 0);
+  --color-primary: oklch(0.7 0.2 90);
+  --color-primary-foreground: oklch(0 0 0);
+  --color-card: oklch(0.1 0 0);
+  --color-card-foreground: oklch(1 0 0);
+  --color-border: oklch(0.5 0 0);
+  --color-muted: oklch(0.2 0 0);
+  --color-muted-foreground: oklch(0.8 0 0);
+}
+
+/* Focus visible for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Container utility */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
