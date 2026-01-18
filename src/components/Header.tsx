@@ -76,17 +76,19 @@ export function Header({ onToggleContrast, highContrast }: HeaderProps) {
       {/* Header com imagem de fundo */}
       <div className="relative">
         {/* Imagem de fundo - Ponte sobre o Rio Machado */}
+        {/* Fundo verde institucional */}
+        <div className="absolute inset-0 w-full h-full bg-primary" />
+        {/* Imagem de fundo com 8% de opacidade */}
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           <Image
             src="/images/ji-parana-header.png"
             alt="Vista aérea da ponte sobre o Rio Machado em Ji-Paraná"
             fill
-            className="object-cover object-center opacity-[0.08]"
+            className="object-cover object-center"
+            style={{ opacity: 0.08 }}
             priority
             quality={100}
           />
-          {/* Fundo verde institucional com a imagem sutil */}
-          <div className="absolute inset-0 bg-primary" style={{ zIndex: -1 }} />
         </div>
 
         {/* Accessibility bar */}
