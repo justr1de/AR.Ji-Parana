@@ -118,16 +118,18 @@ export function Footer() {
                 href="https://abar.org.br/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-white rounded-lg p-3 hover:shadow-lg transition-all"
+                className="inline-block p-3 bg-white/10 rounded-xl border-2 border-white/30 shadow-lg hover:shadow-xl transition-all"
                 title="ABAR - Associação Brasileira de Agências Reguladoras"
               >
-                <Image
-                  src="/logo-abar.png"
-                  alt="ABAR - Associação Brasileira de Agências Reguladoras"
-                  width={160}
-                  height={96}
-                  className="h-14 w-auto"
-                />
+                <div className="bg-white rounded-lg p-2">
+                  <Image
+                    src="/logo-abar.png"
+                    alt="ABAR - Associação Brasileira de Agências Reguladoras"
+                    width={160}
+                    height={96}
+                    className="h-14 w-auto"
+                  />
+                </div>
               </a>
             </div>
           </div>
