@@ -14,11 +14,12 @@ export function SidebarImages() {
         title="Acesse o site oficial da AGERJI"
       >
         <div 
-          className="h-full w-full bg-cover bg-center"
+          className="h-full w-full"
           style={{
             backgroundImage: "url('/agerji-lateral.png')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundSize: "contain",
+            backgroundPosition: "center top",
+            backgroundRepeat: "no-repeat",
           }}
         />
       </Link>
@@ -31,11 +32,12 @@ export function SidebarImages() {
         title="Conheça o turismo de Ji-Paraná"
       >
         <div 
-          className="h-full w-full bg-cover bg-center"
+          className="h-full w-full"
           style={{
             backgroundImage: "url('/jiparana-lateral.png')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundSize: "contain",
+            backgroundPosition: "center bottom",
+            backgroundRepeat: "no-repeat",
           }}
         />
       </Link>
