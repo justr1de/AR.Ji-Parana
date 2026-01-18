@@ -227,7 +227,7 @@ Posso ajudar com algo mais?`;
 
   return (
     <div 
-      className={`fixed bottom-4 right-4 z-50 bg-white rounded-2xl shadow-2xl border border-gray-200 transition-all duration-300 ${
+      className={`fixed bottom-6 right-8 z-50 bg-white rounded-2xl shadow-2xl border border-gray-200 transition-all duration-300 ${
         isMinimized ? "w-72 h-14" : "w-[400px] max-h-[580px]"
       }`}
     >
