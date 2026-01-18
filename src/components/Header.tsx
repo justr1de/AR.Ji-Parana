@@ -207,15 +207,15 @@ export function Header({ onToggleContrast, highContrast }: HeaderProps) {
               <Image
                 src="/images/logo-agerji.png"
                 alt="AGERJI - Agência Reguladora de Ji-Paraná"
-                width={400}
-                height={160}
-                className="h-20 md:h-24 w-auto"
+                width={450}
+                height={180}
+                className="h-24 md:h-28 w-auto"
                 priority
               />
             </Link>
 
             {/* Desktop navigation */}
-            <nav id="navigation" className="hidden lg:flex items-center gap-1" aria-label="Menu principal">
+            <nav id="navigation" className="hidden lg:flex items-center gap-1 ml-auto mr-4" aria-label="Menu principal">
               {menuItems.map((item) => (
                 <div key={item.label} className="relative group">
                   {item.submenu ? (
@@ -269,9 +269,9 @@ export function Header({ onToggleContrast, highContrast }: HeaderProps) {
               <Image
                 src="/prefeitura-ji-parana.png"
                 alt="Prefeitura de Ji-Paraná"
-                width={180}
-                height={72}
-                className="h-14 md:h-16 w-auto"
+                width={140}
+                height={56}
+                className="h-10 md:h-12 w-auto"
               />
             </a>
 
