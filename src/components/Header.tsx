@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, ChevronDown, Eye } from "lucide-react";
+import { Menu, X, ChevronDown, Eye, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const menuItems = [
@@ -275,6 +275,15 @@ export function Header({ onToggleContrast, highContrast }: HeaderProps) {
               />
             </a>
 
+            {/* Botão de Login para Gestores */}
+            <Link
+              href="/admin/login"
+              className="hidden md:flex items-center gap-2 ml-4 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium"
+            >
+              <LogIn className="h-4 w-4" />
+              <span>Área do Gestor</span>
+            </Link>
+
             {/* Mobile menu button */}
             <Button
               variant="ghost"
@@ -343,6 +352,18 @@ export function Header({ onToggleContrast, highContrast }: HeaderProps) {
                   className="h-10 w-auto"
                 />
               </a>
+            </div>
+
+            {/* Botão de Login para Gestores - Mobile */}
+            <div className="pt-2">
+              <Link
+                href="/admin/login"
+                className="flex items-center justify-center gap-2 mx-3 px-4 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <LogIn className="h-4 w-4" />
+                <span>Área do Gestor</span>
+              </Link>
             </div>
           </div>
         </nav>

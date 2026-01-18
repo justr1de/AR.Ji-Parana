@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Bot, Send, User, X, Minimize2, Maximize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -153,6 +153,8 @@ Estamos localizados próximo ao centro da cidade, com fácil acesso por transpor
 
 export function AssistenteVirtualFixo() {
   const [isMinimized, setIsMinimized] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "welcome",
@@ -162,6 +164,29 @@ export function AssistenteVirtualFixo() {
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  // Detectar se é mobile e inicializar minimizado
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      if (mobile) {
+        setIsMinimized(true);
+        // Mostrar tooltip após 1 segundo em mobile
+        setTimeout(() => {
+          setShowTooltip(true);
+          // Esconder tooltip após 5 segundos
+          setTimeout(() => {
+            setShowTooltip(false);
+          }, 5000);
+        }, 1000);
+      }
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleSend = async (query?: string) => {
     const userMessage = query || input.trim();
@@ -225,142 +250,170 @@ Posso ajudar com algo mais?`;
     setIsLoading(false);
   };
 
-  return (
-    <div 
-      className={`fixed bottom-6 right-8 z-50 bg-white rounded-2xl shadow-2xl border border-gray-200 transition-all duration-300 ${
-        isMinimized ? "w-72 h-14" : "w-[400px] max-h-[580px]"
-      }`}
-    >
-      {/* Header */}
-      <div className="bg-gradient-to-r from-[#1a5c38] to-[#1e6b40] text-white p-3.5 rounded-t-2xl">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-white/20 rounded-full flex items-center justify-center">
-              <Bot className="w-5 h-5" />
-            </div>
-            <div>
-              <h3 className="text-base font-semibold">Assistente Virtual AGERJI</h3>
-              {!isMinimized && (
-                <p className="text-xs text-white/80">Tire suas dúvidas sobre nossos serviços</p>
-              )}
-            </div>
-          </div>
-          <button
-            onClick={() => setIsMinimized(!isMinimized)}
-            className="p-2 hover:bg-white/20 rounded-lg transition-colors"
-            aria-label={isMinimized ? "Expandir" : "Minimizar"}
-          >
-            {isMinimized ? <Maximize2 className="w-5 h-5" /> : <Minimize2 className="w-5 h-5" />}
-          </button>
-        </div>
-      </div>
+  const handleToggle = () => {
+    setIsMinimized(!isMinimized);
+    setShowTooltip(false);
+  };
 
-      {!isMinimized && (
-        <>
-          {/* Messages */}
-          <div className="h-52 overflow-y-auto p-4 space-y-4 bg-gray-50">
-            {messages.map((msg) => (
-              <div
-                key={msg.id}
-                className={`flex gap-2 ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+  return (
+    <div className="fixed bottom-6 right-4 md:right-8 z-50">
+      {/* Tooltip para mobile */}
+      {showTooltip && isMinimized && isMobile && (
+        <div className="absolute bottom-16 right-0 bg-[#1a5c38] text-white px-4 py-2 rounded-lg shadow-lg animate-bounce">
+          <div className="relative">
+            <p className="text-sm font-medium whitespace-nowrap">Precisa de ajuda? Clique aqui!</p>
+            {/* Seta apontando para baixo */}
+            <div className="absolute -bottom-4 right-4 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-[#1a5c38]"></div>
+          </div>
+        </div>
+      )}
+
+      {/* Card do Assistente */}
+      <div 
+        className={`bg-white rounded-2xl shadow-2xl border border-gray-200 transition-all duration-300 ${
+          isMinimized 
+            ? "w-16 h-16 md:w-72 md:h-14 cursor-pointer" 
+            : "w-[calc(100vw-2rem)] md:w-[400px] max-h-[70vh] md:max-h-[580px]"
+        }`}
+        onClick={isMinimized ? handleToggle : undefined}
+      >
+        {/* Header */}
+        <div className={`bg-gradient-to-r from-[#1a5c38] to-[#1e6b40] text-white p-3.5 ${isMinimized ? 'rounded-2xl' : 'rounded-t-2xl'}`}>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className={`bg-white/20 rounded-full flex items-center justify-center ${isMinimized ? 'w-9 h-9' : 'w-9 h-9'}`}>
+                <Bot className="w-5 h-5" />
+              </div>
+              {/* Texto oculto em mobile quando minimizado */}
+              <div className={`${isMinimized ? 'hidden md:block' : 'block'}`}>
+                <h3 className="text-base font-semibold">Assistente Virtual AGERJI</h3>
+                {!isMinimized && (
+                  <p className="text-xs text-white/80">Tire suas dúvidas sobre nossos serviços</p>
+                )}
+              </div>
+            </div>
+            {!isMinimized && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleToggle();
+                }}
+                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+                aria-label="Minimizar"
               >
-                {msg.role === "assistant" && (
+                <Minimize2 className="w-5 h-5" />
+              </button>
+            )}
+          </div>
+        </div>
+
+        {!isMinimized && (
+          <>
+            {/* Messages */}
+            <div className="h-40 md:h-52 overflow-y-auto p-4 space-y-4 bg-gray-50">
+              {messages.map((msg) => (
+                <div
+                  key={msg.id}
+                  className={`flex gap-2 ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+                >
+                  {msg.role === "assistant" && (
+                    <div className="w-8 h-8 bg-[#1a5c38] rounded-full flex items-center justify-center flex-shrink-0">
+                      <Bot className="w-4 h-4 text-white" />
+                    </div>
+                  )}
+                  <div
+                    className={`max-w-[85%] rounded-xl px-4 py-2 ${
+                      msg.role === "user"
+                        ? "bg-[#1a5c38] text-white rounded-br-sm"
+                        : "bg-white text-gray-700 shadow-sm border border-gray-100 rounded-bl-sm"
+                    }`}
+                  >
+                    <p className="text-sm whitespace-pre-line">{msg.content}</p>
+                  </div>
+                  {msg.role === "user" && (
+                    <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
+                      <User className="w-4 h-4 text-gray-600" />
+                    </div>
+                  )}
+                </div>
+              ))}
+              {isLoading && (
+                <div className="flex gap-2 justify-start">
                   <div className="w-8 h-8 bg-[#1a5c38] rounded-full flex items-center justify-center flex-shrink-0">
                     <Bot className="w-4 h-4 text-white" />
                   </div>
-                )}
-                <div
-                  className={`max-w-[85%] rounded-xl px-4 py-2 ${
-                    msg.role === "user"
-                      ? "bg-[#1a5c38] text-white rounded-br-sm"
-                      : "bg-white text-gray-700 shadow-sm border border-gray-100 rounded-bl-sm"
-                  }`}
-                >
-                  <p className="text-sm whitespace-pre-line">{msg.content}</p>
-                </div>
-                {msg.role === "user" && (
-                  <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
-                    <User className="w-4 h-4 text-gray-600" />
-                  </div>
-                )}
-              </div>
-            ))}
-            {isLoading && (
-              <div className="flex gap-2 justify-start">
-                <div className="w-8 h-8 bg-[#1a5c38] rounded-full flex items-center justify-center flex-shrink-0">
-                  <Bot className="w-4 h-4 text-white" />
-                </div>
-                <div className="bg-white rounded-xl rounded-bl-sm px-4 py-2.5 shadow-sm border border-gray-100">
-                  <div className="flex gap-1">
-                    <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                    <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                    <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                  <div className="bg-white rounded-xl rounded-bl-sm px-4 py-2.5 shadow-sm border border-gray-100">
+                    <div className="flex gap-1">
+                      <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                      <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                      <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                    </div>
                   </div>
                 </div>
+              )}
+            </div>
+
+            {/* Quick Actions */}
+            <div className="p-3 border-t border-gray-100 bg-white">
+              <div className="flex flex-wrap gap-1.5">
+                {defaultQueries.slice(0, 4).map((item) => (
+                  <button
+                    key={item.label}
+                    onClick={() => handleSend(item.query)}
+                    className="text-xs px-3 py-1.5 bg-gray-100 hover:bg-[#1a5c38] hover:text-white rounded-full transition-colors"
+                    disabled={isLoading}
+                  >
+                    {item.label}
+                  </button>
+                ))}
               </div>
-            )}
-          </div>
-
-          {/* Quick Actions */}
-          <div className="p-3 border-t border-gray-100 bg-white">
-            <div className="flex flex-wrap gap-1.5">
-              {defaultQueries.slice(0, 4).map((item) => (
-                <button
-                  key={item.label}
-                  onClick={() => handleSend(item.query)}
-                  className="text-xs px-3 py-1.5 bg-gray-100 hover:bg-[#1a5c38] hover:text-white rounded-full transition-colors"
-                  disabled={isLoading}
-                >
-                  {item.label}
-                </button>
-              ))}
+              <div className="flex flex-wrap gap-1.5 mt-1.5">
+                {defaultQueries.slice(4).map((item) => (
+                  <button
+                    key={item.label}
+                    onClick={() => handleSend(item.query)}
+                    className="text-xs px-3 py-1.5 bg-gray-100 hover:bg-[#1a5c38] hover:text-white rounded-full transition-colors"
+                    disabled={isLoading}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
             </div>
-            <div className="flex flex-wrap gap-1.5 mt-1.5">
-              {defaultQueries.slice(4).map((item) => (
-                <button
-                  key={item.label}
-                  onClick={() => handleSend(item.query)}
-                  className="text-xs px-3 py-1.5 bg-gray-100 hover:bg-[#1a5c38] hover:text-white rounded-full transition-colors"
-                  disabled={isLoading}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-          </div>
 
-          {/* Input */}
-          <div className="p-3 border-t border-gray-200 bg-white rounded-b-2xl">
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleSend();
-              }}
-              className="flex gap-2"
-            >
-              <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Digite sua pergunta..."
-                className="flex-1 px-4 py-2 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#1a5c38] focus:border-transparent"
-                disabled={isLoading}
-              />
-              <Button
-                type="submit"
-                size="icon"
-                className="rounded-full bg-[#1a5c38] hover:bg-[#1e6b40] w-9 h-9"
-                disabled={isLoading || !input.trim()}
+            {/* Input */}
+            <div className="p-3 border-t border-gray-200 bg-white rounded-b-2xl">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleSend();
+                }}
+                className="flex gap-2"
               >
-                <Send className="w-4 h-4" />
-              </Button>
-            </form>
-            <p className="text-xs text-gray-400 text-center mt-2">
-              Para atendimento personalizado: (69) 3421-5996
-            </p>
-          </div>
-        </>
-      )}
+                <input
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder="Digite sua pergunta..."
+                  className="flex-1 px-4 py-2 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#1a5c38] focus:border-transparent"
+                  disabled={isLoading}
+                />
+                <Button
+                  type="submit"
+                  size="icon"
+                  className="rounded-full bg-[#1a5c38] hover:bg-[#1e6b40] w-9 h-9"
+                  disabled={isLoading || !input.trim()}
+                >
+                  <Send className="w-4 h-4" />
+                </Button>
+              </form>
+              <p className="text-xs text-gray-400 text-center mt-2">
+                Para atendimento personalizado: (69) 3421-5996
+              </p>
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 }
