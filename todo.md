@@ -51,3 +51,4 @@
 - [x] Adicionar degradê em tons de verde no rodapé
 - [x] Criar popup de cookies LGPD que sobe do rodapé
 - [x] Adaptar imagem aérea de Ji-Paraná como fundo do cabeçalho
+- [x] Ajustar opacidade da imagem do cabeçalho para 8%

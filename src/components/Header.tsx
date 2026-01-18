@@ -81,12 +81,12 @@ export function Header({ onToggleContrast, highContrast }: HeaderProps) {
             src="/images/ji-parana-header.png"
             alt="Vista aérea da ponte sobre o Rio Machado em Ji-Paraná"
             fill
-            className="object-cover object-center"
+            className="object-cover object-center opacity-[0.08]"
             priority
             quality={100}
           />
-          {/* Overlay escuro para melhor legibilidade */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
+          {/* Fundo verde institucional com a imagem sutil */}
+          <div className="absolute inset-0 bg-primary" style={{ zIndex: -1 }} />
         </div>
 
         {/* Accessibility bar */}
