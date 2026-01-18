@@ -163,7 +163,7 @@ export function CalendarSection({ events = defaultEvents }: { events?: EventItem
 
   return (
     <section className="py-8 bg-gradient-to-b from-white to-secondary/20" aria-labelledby="calendar-title">
-      <div className="container max-w-5xl">
+      <div className="container">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-2">
             <CalendarDays className="h-6 w-6 text-primary" />
@@ -186,7 +186,7 @@ export function CalendarSection({ events = defaultEvents }: { events?: EventItem
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Calendário */}
-          <Card className="lg:col-span-2 shadow-md">
+          <Card className="lg:col-span-2 shadow-lg hover:shadow-xl transition-shadow duration-300">
             <CardContent className="p-4">
               {/* Header do calendário */}
               <div className="flex items-center justify-between mb-4">
@@ -214,7 +214,7 @@ export function CalendarSection({ events = defaultEvents }: { events?: EventItem
                 {DAYS_OF_WEEK.map((day) => (
                   <div
                     key={day}
-                    className="text-center text-xs font-medium text-muted-foreground py-1"
+                    className="text-center text-sm font-medium text-muted-foreground py-1"
                   >
                     {day}
                   </div>
@@ -284,7 +284,7 @@ export function CalendarSection({ events = defaultEvents }: { events?: EventItem
           </Card>
 
           {/* Lista de eventos */}
-          <Card className="shadow-md">
+          <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
             <CardContent className="p-4">
               <h3 className="text-sm font-semibold text-foreground mb-3">
                 {selectedDate
