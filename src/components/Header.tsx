@@ -203,13 +203,13 @@ export function Header({ onToggleContrast, highContrast }: HeaderProps) {
         <div className="container relative z-10">
           <div className="flex items-center justify-between py-4">
             {/* Logo AGERJI */}
-            <Link href="/" className="flex items-center">
+            <Link href="/" className="flex items-center group">
               <Image
                 src="/images/logo-agerji.png"
                 alt="AGERJI - Agência Reguladora de Ji-Paraná"
-                width={450}
-                height={180}
-                className="h-24 md:h-28 w-auto"
+                width={500}
+                height={200}
+                className="h-28 md:h-36 lg:h-40 w-auto transition-all duration-300 ease-in-out group-hover:scale-105 group-hover:drop-shadow-lg"
                 priority
               />
             </Link>
