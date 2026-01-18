@@ -162,59 +162,59 @@ export function CalendarSection({ events = defaultEvents }: { events?: EventItem
   }
 
   return (
-    <section className="py-12 bg-gradient-to-b from-white to-secondary/20" aria-labelledby="calendar-title">
-      <div className="container">
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-3">
-            <CalendarDays className="h-8 w-8 text-primary" />
+    <section className="py-8 bg-gradient-to-b from-white to-secondary/20" aria-labelledby="calendar-title">
+      <div className="container max-w-5xl">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-2">
+            <CalendarDays className="h-6 w-6 text-primary" />
             <div>
-              <h2 id="calendar-title" className="text-2xl md:text-3xl font-bold text-foreground">
+              <h2 id="calendar-title" className="text-xl md:text-2xl font-bold text-foreground">
                 Calendário de Eventos
               </h2>
-              <p className="text-muted-foreground">
+              <p className="text-sm text-muted-foreground">
                 Acompanhe as atividades da AGERJI
               </p>
             </div>
           </div>
           <Link href="/agenda">
-            <Button variant="outline" className="hidden md:flex items-center gap-2">
+            <Button variant="outline" size="sm" className="hidden md:flex items-center gap-2">
               Ver agenda completa
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-3 w-3" />
             </Button>
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Calendário */}
-          <Card className="lg:col-span-2 shadow-lg">
-            <CardContent className="p-6">
+          <Card className="lg:col-span-2 shadow-md">
+            <CardContent className="p-4">
               {/* Header do calendário */}
-              <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center justify-between mb-4">
                 <button
                   onClick={prevMonth}
-                  className="p-2 hover:bg-secondary rounded-lg transition-colors"
+                  className="p-1.5 hover:bg-secondary rounded-lg transition-colors"
                   aria-label="Mês anterior"
                 >
-                  <ChevronLeft className="h-5 w-5" />
+                  <ChevronLeft className="h-4 w-4" />
                 </button>
-                <h3 className="text-xl font-semibold text-foreground">
+                <h3 className="text-base font-semibold text-foreground">
                   {MONTHS[currentMonth]} {currentYear}
                 </h3>
                 <button
                   onClick={nextMonth}
-                  className="p-2 hover:bg-secondary rounded-lg transition-colors"
+                  className="p-1.5 hover:bg-secondary rounded-lg transition-colors"
                   aria-label="Próximo mês"
                 >
-                  <ChevronRight className="h-5 w-5" />
+                  <ChevronRight className="h-4 w-4" />
                 </button>
               </div>
 
               {/* Dias da semana */}
-              <div className="grid grid-cols-7 gap-1 mb-2">
+              <div className="grid grid-cols-7 gap-0.5 mb-1">
                 {DAYS_OF_WEEK.map((day) => (
                   <div
                     key={day}
-                    className="text-center text-sm font-medium text-muted-foreground py-2"
+                    className="text-center text-xs font-medium text-muted-foreground py-1"
                   >
                     {day}
                   </div>
@@ -222,7 +222,7 @@ export function CalendarSection({ events = defaultEvents }: { events?: EventItem
               </div>
 
               {/* Dias do mês */}
-              <div className="grid grid-cols-7 gap-1">
+              <div className="grid grid-cols-7 gap-0.5">
                 {calendarDays.map((day, index) => {
                   if (day === null) {
                     return <div key={`empty-${index}`} className="aspect-square" />;
@@ -245,19 +245,19 @@ export function CalendarSection({ events = defaultEvents }: { events?: EventItem
                       onClick={() =>
                         setSelectedDate(new Date(currentYear, currentMonth, day))
                       }
-                      className={`aspect-square flex flex-col items-center justify-center rounded-lg transition-all relative
+                      className={`aspect-square flex flex-col items-center justify-center rounded-md transition-all relative
                         ${isToday ? "bg-primary text-primary-foreground font-bold" : ""}
-                        ${isSelected && !isToday ? "bg-primary/20 ring-2 ring-primary" : ""}
+                        ${isSelected && !isToday ? "bg-primary/20 ring-1 ring-primary" : ""}
                         ${!isToday && !isSelected ? "hover:bg-secondary" : ""}
                       `}
                     >
-                      <span className="text-sm">{day}</span>
+                      <span className="text-xs">{day}</span>
                       {dayEvents.length > 0 && (
                         <div className="flex gap-0.5 mt-0.5">
                           {dayEvents.slice(0, 3).map((event, i) => (
                             <span
                               key={i}
-                              className={`w-1.5 h-1.5 rounded-full ${
+                              className={`w-1 h-1 rounded-full ${
                                 eventTypeColors[event.event_type] || "bg-primary"
                               }`}
                             />
@@ -270,11 +270,11 @@ export function CalendarSection({ events = defaultEvents }: { events?: EventItem
               </div>
 
               {/* Legenda */}
-              <div className="flex flex-wrap gap-4 mt-6 pt-4 border-t border-border">
+              <div className="flex flex-wrap gap-3 mt-4 pt-3 border-t border-border">
                 {Object.entries(eventTypeLabels).map(([key, label]) => (
-                  <div key={key} className="flex items-center gap-2 text-sm">
+                  <div key={key} className="flex items-center gap-1.5 text-xs">
                     <span
-                      className={`w-3 h-3 rounded-full ${eventTypeColors[key]}`}
+                      className={`w-2 h-2 rounded-full ${eventTypeColors[key]}`}
                     />
                     <span className="text-muted-foreground">{label}</span>
                   </div>
@@ -284,9 +284,9 @@ export function CalendarSection({ events = defaultEvents }: { events?: EventItem
           </Card>
 
           {/* Lista de eventos */}
-          <Card className="shadow-lg">
-            <CardContent className="p-6">
-              <h3 className="text-lg font-semibold text-foreground mb-4">
+          <Card className="shadow-md">
+            <CardContent className="p-4">
+              <h3 className="text-sm font-semibold text-foreground mb-3">
                 {selectedDate
                   ? `Eventos em ${selectedDate.toLocaleDateString("pt-BR", {
                       day: "2-digit",
@@ -296,11 +296,11 @@ export function CalendarSection({ events = defaultEvents }: { events?: EventItem
               </h3>
 
               {displayEvents.length > 0 ? (
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {displayEvents.map((event) => (
                     <div
                       key={event.id}
-                      className="p-4 bg-secondary/50 rounded-lg border-l-4"
+                      className="p-3 bg-secondary/50 rounded-md border-l-3"
                       style={{
                         borderLeftColor:
                           event.event_type === "reuniao"
@@ -313,18 +313,18 @@ export function CalendarSection({ events = defaultEvents }: { events?: EventItem
                       }}
                     >
                       <span
-                        className={`inline-block px-2 py-0.5 text-xs font-medium text-white rounded mb-2 ${
+                        className={`inline-block px-1.5 py-0.5 text-[10px] font-medium text-white rounded mb-1.5 ${
                           eventTypeColors[event.event_type] || "bg-primary"
                         }`}
                       >
                         {eventTypeLabels[event.event_type] || event.event_type}
                       </span>
-                      <h4 className="font-medium text-foreground mb-2">
+                      <h4 className="text-sm font-medium text-foreground mb-1.5">
                         {event.title}
                       </h4>
-                      <div className="space-y-1 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-2">
-                          <Clock className="h-4 w-4" />
+                      <div className="space-y-0.5 text-xs text-muted-foreground">
+                        <div className="flex items-center gap-1.5">
+                          <Clock className="h-3 w-3" />
                           <span>
                             {event.all_day
                               ? `${formatDateFull(event.start_date)} - Dia inteiro`
@@ -334,8 +334,8 @@ export function CalendarSection({ events = defaultEvents }: { events?: EventItem
                           </span>
                         </div>
                         {event.location && (
-                          <div className="flex items-center gap-2">
-                            <MapPin className="h-4 w-4" />
+                          <div className="flex items-center gap-1.5">
+                            <MapPin className="h-3 w-3" />
                             <span>{event.location}</span>
                           </div>
                         )}
@@ -344,16 +344,17 @@ export function CalendarSection({ events = defaultEvents }: { events?: EventItem
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-8 text-muted-foreground">
-                  <CalendarDays className="h-12 w-12 mx-auto mb-3 opacity-50" />
-                  <p>Nenhum evento nesta data</p>
+                <div className="text-center py-6 text-muted-foreground">
+                  <CalendarDays className="h-8 w-8 mx-auto mb-2 opacity-50" />
+                  <p className="text-xs">Nenhum evento nesta data</p>
                 </div>
               )}
 
               {selectedDate && (
                 <Button
                   variant="ghost"
-                  className="w-full mt-4"
+                  size="sm"
+                  className="w-full mt-3 text-xs"
                   onClick={() => setSelectedDate(null)}
                 >
                   Ver todos os próximos eventos
@@ -363,9 +364,9 @@ export function CalendarSection({ events = defaultEvents }: { events?: EventItem
           </Card>
         </div>
 
-        <div className="mt-6 text-center md:hidden">
+        <div className="mt-4 text-center md:hidden">
           <Link href="/agenda">
-            <Button variant="outline" className="w-full">
+            <Button variant="outline" size="sm" className="w-full">
               Ver agenda completa
             </Button>
           </Link>
