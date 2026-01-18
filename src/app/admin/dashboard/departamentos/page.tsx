@@ -71,7 +71,7 @@ interface DepartmentDocument {
   };
 }
 
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+const iconMap: Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
   Building2: Building2,
   FileText: FileText,
   Briefcase: Briefcase,
@@ -536,7 +536,7 @@ export default function DepartamentosPage() {
                         selectedDepartment?.id === dept.id ? 'bg-green-50 text-green-700' : 'hover:bg-gray-50 text-gray-700'
                       }`}
                     >
-                      <IconComponent className="w-4 h-4" style={{ color: dept.color || '#6B7280' }} />
+                      <div style={{ color: dept.color || '#6B7280' }}><IconComponent className="w-4 h-4" /></div>
                       <span className="flex-1 truncate">{dept.name}</span>
                       <ChevronRight className="w-4 h-4 opacity-50" />
                     </button>
