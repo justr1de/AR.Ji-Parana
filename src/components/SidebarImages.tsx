@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export function SidebarImages() {
   return (
-    <div className="fixed left-0 top-0 h-screen w-16 md:w-20 lg:w-24 z-10 hidden lg:flex flex-col">
+    <div className="fixed left-0 top-0 h-screen w-48 md:w-60 lg:w-72 z-10 hidden lg:flex flex-col">
       {/* Imagem da AGERJI (em cima) - Link para o site oficial */}
       <Link 
         href="https://agerji.ji-parana.ro.gov.br"
