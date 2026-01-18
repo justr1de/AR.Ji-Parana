@@ -147,6 +147,15 @@ export default function AdminLoginPage() {
                 />
               </div>
 
+              <div className="flex justify-end">
+                <Link
+                  href="/admin/recuperar-senha"
+                  className="text-sm text-green-700 hover:text-green-800 hover:underline"
+                >
+                  Esqueci minha senha
+                </Link>
+              </div>
+
               <button
                 type="submit"
                 disabled={loading}
