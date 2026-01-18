@@ -5,6 +5,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
 import { AssistenteVirtualFixo } from "@/components/AssistenteVirtualFixo";
+import { SidebarImages } from "@/components/SidebarImages";
 
 interface ClientLayoutProps {
   children: React.ReactNode;
@@ -22,6 +23,7 @@ export function ClientLayout({ children }: ClientLayoutProps) {
       <a href="#main-content" className="skip-link">
         Ir para o conteúdo principal
       </a>
+      <SidebarImages />
       <Header onToggleContrast={toggleContrast} highContrast={highContrast} />
       <main id="main-content" className="flex-1">
         {children}
