@@ -207,9 +207,9 @@ export function Header({ onToggleContrast, highContrast }: HeaderProps) {
               <Image
                 src="/images/logo-agerji.png"
                 alt="AGERJI - Agência Reguladora de Ji-Paraná"
-                width={240}
-                height={100}
-                className="h-16 md:h-24 w-auto"
+                width={300}
+                height={120}
+                className="h-14 md:h-16 w-auto"
                 priority
               />
             </Link>
@@ -269,9 +269,9 @@ export function Header({ onToggleContrast, highContrast }: HeaderProps) {
               <Image
                 src="/prefeitura-ji-parana.png"
                 alt="Prefeitura de Ji-Paraná"
-                width={150}
-                height={60}
-                className="h-12 w-auto"
+                width={180}
+                height={72}
+                className="h-14 md:h-16 w-auto"
               />
             </a>
 
