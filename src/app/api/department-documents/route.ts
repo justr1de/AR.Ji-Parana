@@ -6,6 +6,7 @@ export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const departmentId = searchParams.get('department_id');
+    const folderId = searchParams.get('folder_id');
     const search = searchParams.get('search');
 
     let query = supabase
@@ -22,6 +23,10 @@ export async function GET(request: NextRequest) {
 
     if (departmentId) {
       query = query.eq('department_id', departmentId);
+    }
+
+    if (folderId) {
+      query = query.eq('folder_id', folderId);
     }
 
     if (search) {
@@ -57,6 +62,7 @@ export async function POST(request: NextRequest) {
     const title = formData.get('title') as string;
     const description = formData.get('description') as string;
     const tags = formData.get('tags') as string;
+    const folderId = formData.get('folder_id') as string;
 
     if (!file || !departmentId || !title) {
       return NextResponse.json(
@@ -101,6 +107,7 @@ export async function POST(request: NextRequest) {
       .from('department_documents')
       .insert({
         department_id: departmentId,
+        folder_id: folderId || null,
         title,
         description: description || null,
         file_url: urlData.publicUrl,
@@ -129,7 +136,7 @@ export async function POST(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   try {
     const body = await request.json();
-    const { id, title, description, tags, department_id } = body;
+    const { id, title, description, tags, department_id, folder_id } = body;
 
     if (!id) {
       return NextResponse.json(
@@ -143,6 +150,7 @@ export async function PUT(request: NextRequest) {
     if (description !== undefined) updateData.description = description;
     if (tags !== undefined) updateData.tags = tags;
     if (department_id !== undefined) updateData.department_id = department_id;
+    if (folder_id !== undefined) updateData.folder_id = folder_id;
 
     const { data: document, error } = await supabase
       .from('department_documents')
