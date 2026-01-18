@@ -68,12 +68,15 @@ function findResponse(userMessage: string): string {
   for (const [key, data] of Object.entries(knowledgeBase)) {
     if (key === "default") continue;
     
-    const hasKeyword = data.keywords.some(keyword => 
-      normalizedMessage.includes(keyword.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
-    );
-    
-    if (hasKeyword) {
-      return data.response;
+    // Type guard para verificar se data tem keywords
+    if ("keywords" in data && Array.isArray(data.keywords)) {
+      const hasKeyword = data.keywords.some(keyword => 
+        normalizedMessage.includes(keyword.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
+      );
+      
+      if (hasKeyword) {
+        return data.response;
+      }
     }
   }
   
