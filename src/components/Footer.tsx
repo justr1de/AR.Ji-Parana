@@ -34,6 +34,17 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Logo and contact */}
           <div className="lg:col-span-2">
+            {/* Bandeira de Ji-Paraná */}
+            <div className="mb-6">
+              <Image
+                src="/images/bandeira-ji-parana.png"
+                alt="Bandeira de Ji-Paraná"
+                width={120}
+                height={80}
+                className="h-16 w-auto"
+              />
+            </div>
+            
             <div className="flex items-center gap-4 mb-6">
               <Image
                 src="/images/logo-agerji.png"
