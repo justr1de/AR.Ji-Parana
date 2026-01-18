@@ -57,3 +57,14 @@
 - [x] Aumentar logo ABAR no rodapé para mais destaque
 - [x] Aumentar e dar mais ênfase às linhas tecnológicas no cabeçalho
 - [x] Criar agente de IA na lateral direita para auxiliar navegação
+
+
+## Sistema de Departamentos e Pastas - Janeiro 2026
+- [x] Criar tabela folders no Supabase
+- [x] Atualizar API de folders para CRUD completo
+- [x] Atualizar API de department-documents para suportar folder_id
+- [x] Implementar página de departamentos com sistema de pastas hierárquico
+- [x] Adicionar dashboards gerenciais na página de departamentos
+- [x] Incluir estatísticas de documentos, pastas e atividades recentes
+- [x] Implementar upload de documentos por departamento/pasta
+- [x] Adicionar gráfico de documentos por departamento
