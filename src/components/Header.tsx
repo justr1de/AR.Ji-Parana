@@ -68,54 +68,93 @@ interface HeaderProps {
 }
 
 // Componente SVG para linhas tecnológicas - Versão ampliada e mais visível
-function TechLines({ position }: { position: "top-left" | "top-right" | "bottom-left" | "bottom-right" }) {
-  const transforms = {
-    "top-left": "",
-    "top-right": "scale(-1, 1)",
-    "bottom-left": "scale(1, -1)",
-    "bottom-right": "scale(-1, -1)",
-  };
-
+function TechLines({ position }: { position: "left" | "right" }) {
+  const isLeft = position === "left";
+  
   return (
     <svg
-      className={`absolute w-40 h-40 opacity-[0.35] ${
-        position === "top-left" ? "top-0 left-0" :
-        position === "top-right" ? "top-0 right-0" :
-        position === "bottom-left" ? "bottom-0 left-0" :
-        "bottom-0 right-0"
-      }`}
-      viewBox="0 0 100 100"
+      className={`absolute ${isLeft ? "left-0" : "right-0"} top-0 w-64 h-32 pointer-events-none`}
+      viewBox="0 0 256 128"
       fill="none"
-      style={{ transform: transforms[position] }}
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ transform: isLeft ? "none" : "scaleX(-1)" }}
     >
-      {/* Linhas horizontais principais */}
-      <line x1="0" y1="8" x2="70" y2="8" stroke="#1a5c38" strokeWidth="1.5" />
-      <line x1="0" y1="18" x2="50" y2="18" stroke="#1a5c38" strokeWidth="1" />
-      <line x1="0" y1="28" x2="35" y2="28" stroke="#1a5c38" strokeWidth="0.8" />
-      <line x1="0" y1="38" x2="20" y2="38" stroke="#1a5c38" strokeWidth="0.5" />
+      {/* Linhas principais de conexão */}
+      <path
+        d="M0 20 L60 20 L80 40 L140 40"
+        stroke="#1a5c38"
+        strokeWidth="2"
+        opacity="0.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M0 50 L40 50 L60 70 L120 70 L140 50"
+        stroke="#1a5c38"
+        strokeWidth="2"
+        opacity="0.4"
+        strokeLinecap="round"
+      />
+      <path
+        d="M0 80 L30 80 L50 100 L100 100"
+        stroke="#1a5c38"
+        strokeWidth="1.5"
+        opacity="0.35"
+        strokeLinecap="round"
+      />
       
-      {/* Linhas verticais principais */}
-      <line x1="8" y1="0" x2="8" y2="70" stroke="#1a5c38" strokeWidth="1.5" />
-      <line x1="18" y1="0" x2="18" y2="50" stroke="#1a5c38" strokeWidth="1" />
-      <line x1="28" y1="0" x2="28" y2="35" stroke="#1a5c38" strokeWidth="0.8" />
-      <line x1="38" y1="0" x2="38" y2="20" stroke="#1a5c38" strokeWidth="0.5" />
+      {/* Linhas diagonais */}
+      <path
+        d="M20 0 L60 40 L60 80"
+        stroke="#1a5c38"
+        strokeWidth="1.5"
+        opacity="0.3"
+        strokeLinecap="round"
+        strokeDasharray="4 4"
+      />
+      <path
+        d="M80 0 L100 20 L100 60"
+        stroke="#1a5c38"
+        strokeWidth="1.5"
+        opacity="0.25"
+        strokeLinecap="round"
+      />
       
-      {/* Pontos de conexão - nós da rede */}
-      <circle cx="8" cy="8" r="3" fill="#1a5c38" />
-      <circle cx="18" cy="18" r="2.5" fill="#1a5c38" />
-      <circle cx="28" cy="8" r="2" fill="#1a5c38" />
-      <circle cx="8" cy="28" r="2" fill="#1a5c38" />
-      <circle cx="28" cy="28" r="1.5" fill="#1a5c38" />
-      <circle cx="38" cy="8" r="1.5" fill="#1a5c38" />
-      <circle cx="8" cy="38" r="1.5" fill="#1a5c38" />
+      {/* Pontos de conexão (nós) */}
+      <circle cx="60" cy="20" r="4" fill="#1a5c38" opacity="0.6" />
+      <circle cx="80" cy="40" r="3" fill="#1a5c38" opacity="0.5" />
+      <circle cx="140" cy="40" r="3" fill="#1a5c38" opacity="0.4" />
+      <circle cx="40" cy="50" r="3" fill="#1a5c38" opacity="0.5" />
+      <circle cx="60" cy="70" r="4" fill="#1a5c38" opacity="0.6" />
+      <circle cx="120" cy="70" r="3" fill="#1a5c38" opacity="0.4" />
+      <circle cx="50" cy="100" r="3" fill="#1a5c38" opacity="0.5" />
+      <circle cx="100" cy="100" r="3" fill="#1a5c38" opacity="0.4" />
       
-      {/* Linhas diagonais de conexão */}
-      <line x1="8" y1="8" x2="55" y2="55" stroke="#1a5c38" strokeWidth="0.8" strokeDasharray="4 6" />
-      <line x1="18" y1="8" x2="45" y2="35" stroke="#1a5c38" strokeWidth="0.5" strokeDasharray="3 5" />
+      {/* Quadrados decorativos */}
+      <rect x="130" y="35" width="6" height="6" fill="#1a5c38" opacity="0.3" transform="rotate(45 133 38)" />
+      <rect x="90" y="95" width="5" height="5" fill="#1a5c38" opacity="0.25" transform="rotate(45 92 98)" />
       
-      {/* Pequenos quadrados decorativos */}
-      <rect x="45" y="8" width="4" height="4" fill="#1a5c38" opacity="0.6" />
-      <rect x="8" y="45" width="4" height="4" fill="#1a5c38" opacity="0.6" />
+      {/* Linhas horizontais finas */}
+      <path
+        d="M0 110 L80 110"
+        stroke="#1a5c38"
+        strokeWidth="1"
+        opacity="0.2"
+        strokeLinecap="round"
+        strokeDasharray="2 6"
+      />
+      <path
+        d="M0 35 L25 35"
+        stroke="#1a5c38"
+        strokeWidth="1"
+        opacity="0.25"
+        strokeLinecap="round"
+      />
+      
+      {/* Círculos adicionais para efeito de rede */}
+      <circle cx="25" cy="35" r="2" fill="#1a5c38" opacity="0.4" />
+      <circle cx="0" cy="20" r="2" fill="#1a5c38" opacity="0.5" />
+      <circle cx="0" cy="50" r="2" fill="#1a5c38" opacity="0.5" />
+      <circle cx="0" cy="80" r="2" fill="#1a5c38" opacity="0.4" />
     </svg>
   );
 }
@@ -158,10 +197,8 @@ export function Header({ onToggleContrast, highContrast }: HeaderProps) {
       {/* Header principal branco com linhas tecnológicas */}
       <div className="relative bg-white border-b border-gray-100 shadow-sm overflow-hidden">
         {/* Linhas tecnológicas nos cantos */}
-        <TechLines position="top-left" />
-        <TechLines position="top-right" />
-        <TechLines position="bottom-left" />
-        <TechLines position="bottom-right" />
+        <TechLines position="left" />
+        <TechLines position="right" />
 
         <div className="container relative z-10">
           <div className="flex items-center justify-between py-4">
@@ -221,20 +258,20 @@ export function Header({ onToggleContrast, highContrast }: HeaderProps) {
               ))}
             </nav>
 
-            {/* Logo ABAR */}
+            {/* Logo da Prefeitura de Ji-Paraná */}
             <a
-              href="https://abar.org.br/"
+              href="https://ji-parana.ro.gov.br"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:block"
-              title="ABAR - Associação Brasileira de Agências Reguladoras"
+              className="hidden md:flex items-center ml-2 hover:opacity-80 transition-opacity"
+              title="Prefeitura de Ji-Paraná"
             >
               <Image
-                src="/images/logo-abar.png"
-                alt="ABAR - Associação Brasileira de Agências Reguladoras"
-                width={100}
+                src="/prefeitura-ji-parana.png"
+                alt="Prefeitura de Ji-Paraná"
+                width={150}
                 height={60}
-                className="h-10 w-auto"
+                className="h-12 w-auto"
               />
             </a>
 
@@ -290,22 +327,21 @@ export function Header({ onToggleContrast, highContrast }: HeaderProps) {
               </div>
             ))}
             
-            {/* ABAR link in mobile */}
+            {/* Prefeitura link in mobile */}
             <div className="pt-4 border-t border-gray-200">
               <a
-                href="https://abar.org.br/"
+                href="https://ji-parana.ro.gov.br"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 px-3 py-2"
               >
                 <Image
-                  src="/images/logo-abar.png"
-                  alt="ABAR"
-                  width={80}
-                  height={48}
-                  className="h-8 w-auto"
+                  src="/prefeitura-ji-parana.png"
+                  alt="Prefeitura de Ji-Paraná"
+                  width={100}
+                  height={40}
+                  className="h-10 w-auto"
                 />
-                <span className="text-sm text-gray-600">Membro da ABAR</span>
               </a>
             </div>
           </div>
