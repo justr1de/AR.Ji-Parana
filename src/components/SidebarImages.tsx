@@ -1,26 +1,44 @@
 "use client";
 
+import Link from "next/link";
+
 export function SidebarImages() {
   return (
-    <div className="fixed left-0 top-0 h-screen w-16 md:w-20 lg:w-24 z-10 pointer-events-none hidden lg:block">
-      {/* Imagem da AGERJI (em cima) */}
-      <div 
-        className="h-1/2 w-full bg-cover bg-center opacity-40"
-        style={{
-          backgroundImage: "url('/agerji-lateral.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
-      {/* Imagem de Ji-Paraná (embaixo) */}
-      <div 
-        className="h-1/2 w-full bg-cover bg-center opacity-40"
-        style={{
-          backgroundImage: "url('/jiparana-lateral.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
+    <div className="fixed left-0 top-0 h-screen w-16 md:w-20 lg:w-24 z-10 hidden lg:flex flex-col">
+      {/* Imagem da AGERJI (em cima) - Link para o site oficial */}
+      <Link 
+        href="https://agerji.ji-parana.ro.gov.br"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="h-1/2 w-full block transition-all duration-300 opacity-60 hover:opacity-90"
+        title="Acesse o site oficial da AGERJI"
+      >
+        <div 
+          className="h-full w-full bg-cover bg-center"
+          style={{
+            backgroundImage: "url('/agerji-lateral.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+      </Link>
+      {/* Imagem de Ji-Paraná (embaixo) - Link para página de turismo */}
+      <Link 
+        href="https://ji-parana.ro.gov.br/turismo"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="h-1/2 w-full block transition-all duration-300 opacity-60 hover:opacity-90"
+        title="Conheça o turismo de Ji-Paraná"
+      >
+        <div 
+          className="h-full w-full bg-cover bg-center"
+          style={{
+            backgroundImage: "url('/jiparana-lateral.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+      </Link>
     </div>
   );
 }
