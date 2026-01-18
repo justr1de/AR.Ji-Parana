@@ -54,3 +54,6 @@
 - [x] Ajustar opacidade da imagem do cabeçalho para 8%
 - [x] Remover imagem do cabeçalho
 - [x] Cabeçalho branco com linhas tecnológicas sutis nos cantos
+- [x] Aumentar logo ABAR no rodapé para mais destaque
+- [x] Aumentar e dar mais ênfase às linhas tecnológicas no cabeçalho
+- [x] Criar agente de IA na lateral direita para auxiliar navegação

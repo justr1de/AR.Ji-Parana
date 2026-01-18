@@ -65,22 +65,23 @@ export function Footer() {
             
             {/* ABAR Badge */}
             <div className="mt-6 pt-6 border-t border-primary-foreground/20">
-              <p className="text-xs text-primary-foreground/70 mb-3">Membro da:</p>
+              <p className="text-sm font-medium text-primary-foreground/90 mb-3">Membro da:</p>
               <a
                 href="https://abar.org.br/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block"
+                className="inline-block bg-white/10 rounded-lg p-3 hover:bg-white/20 transition-all"
                 title="ABAR - Associação Brasileira de Agências Reguladoras"
               >
                 <Image
                   src="/images/logo-abar.png"
                   alt="ABAR - Associação Brasileira de Agências Reguladoras"
-                  width={100}
-                  height={60}
-                  className="h-10 w-auto brightness-0 invert opacity-80 hover:opacity-100 transition-opacity"
+                  width={160}
+                  height={96}
+                  className="h-16 w-auto brightness-0 invert opacity-90 hover:opacity-100 transition-opacity"
                 />
               </a>
+              <p className="text-xs text-primary-foreground/60 mt-2">Associação Brasileira de Agências Reguladoras</p>
             </div>
           </div>
 

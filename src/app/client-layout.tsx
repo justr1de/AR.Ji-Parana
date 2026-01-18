@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
+import { AIAssistant } from "@/components/AIAssistant";
 
 interface ClientLayoutProps {
   children: React.ReactNode;
@@ -27,6 +28,7 @@ export function ClientLayout({ children }: ClientLayoutProps) {
       </main>
       <Footer />
       <CookieConsent />
+      <AIAssistant />
     </div>
   );
 }

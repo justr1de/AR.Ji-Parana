@@ -67,7 +67,7 @@ interface HeaderProps {
   highContrast?: boolean;
 }
 
-// Componente SVG para linhas tecnológicas
+// Componente SVG para linhas tecnológicas - Versão ampliada e mais visível
 function TechLines({ position }: { position: "top-left" | "top-right" | "bottom-left" | "bottom-right" }) {
   const transforms = {
     "top-left": "",
@@ -78,7 +78,7 @@ function TechLines({ position }: { position: "top-left" | "top-right" | "bottom-
 
   return (
     <svg
-      className={`absolute w-24 h-24 opacity-[0.15] ${
+      className={`absolute w-40 h-40 opacity-[0.35] ${
         position === "top-left" ? "top-0 left-0" :
         position === "top-right" ? "top-0 right-0" :
         position === "bottom-left" ? "bottom-0 left-0" :
@@ -88,24 +88,34 @@ function TechLines({ position }: { position: "top-left" | "top-right" | "bottom-
       fill="none"
       style={{ transform: transforms[position] }}
     >
-      {/* Linhas horizontais */}
-      <line x1="0" y1="10" x2="60" y2="10" stroke="#1a5c38" strokeWidth="0.5" />
-      <line x1="0" y1="20" x2="40" y2="20" stroke="#1a5c38" strokeWidth="0.5" />
-      <line x1="0" y1="30" x2="25" y2="30" stroke="#1a5c38" strokeWidth="0.5" />
+      {/* Linhas horizontais principais */}
+      <line x1="0" y1="8" x2="70" y2="8" stroke="#1a5c38" strokeWidth="1.5" />
+      <line x1="0" y1="18" x2="50" y2="18" stroke="#1a5c38" strokeWidth="1" />
+      <line x1="0" y1="28" x2="35" y2="28" stroke="#1a5c38" strokeWidth="0.8" />
+      <line x1="0" y1="38" x2="20" y2="38" stroke="#1a5c38" strokeWidth="0.5" />
       
-      {/* Linhas verticais */}
-      <line x1="10" y1="0" x2="10" y2="60" stroke="#1a5c38" strokeWidth="0.5" />
-      <line x1="20" y1="0" x2="20" y2="40" stroke="#1a5c38" strokeWidth="0.5" />
-      <line x1="30" y1="0" x2="30" y2="25" stroke="#1a5c38" strokeWidth="0.5" />
+      {/* Linhas verticais principais */}
+      <line x1="8" y1="0" x2="8" y2="70" stroke="#1a5c38" strokeWidth="1.5" />
+      <line x1="18" y1="0" x2="18" y2="50" stroke="#1a5c38" strokeWidth="1" />
+      <line x1="28" y1="0" x2="28" y2="35" stroke="#1a5c38" strokeWidth="0.8" />
+      <line x1="38" y1="0" x2="38" y2="20" stroke="#1a5c38" strokeWidth="0.5" />
       
-      {/* Pontos de conexão */}
-      <circle cx="10" cy="10" r="2" fill="#1a5c38" />
-      <circle cx="20" cy="20" r="1.5" fill="#1a5c38" />
-      <circle cx="30" cy="10" r="1" fill="#1a5c38" />
-      <circle cx="10" cy="30" r="1" fill="#1a5c38" />
+      {/* Pontos de conexão - nós da rede */}
+      <circle cx="8" cy="8" r="3" fill="#1a5c38" />
+      <circle cx="18" cy="18" r="2.5" fill="#1a5c38" />
+      <circle cx="28" cy="8" r="2" fill="#1a5c38" />
+      <circle cx="8" cy="28" r="2" fill="#1a5c38" />
+      <circle cx="28" cy="28" r="1.5" fill="#1a5c38" />
+      <circle cx="38" cy="8" r="1.5" fill="#1a5c38" />
+      <circle cx="8" cy="38" r="1.5" fill="#1a5c38" />
       
-      {/* Linha diagonal */}
-      <line x1="5" y1="5" x2="45" y2="45" stroke="#1a5c38" strokeWidth="0.3" strokeDasharray="2 4" />
+      {/* Linhas diagonais de conexão */}
+      <line x1="8" y1="8" x2="55" y2="55" stroke="#1a5c38" strokeWidth="0.8" strokeDasharray="4 6" />
+      <line x1="18" y1="8" x2="45" y2="35" stroke="#1a5c38" strokeWidth="0.5" strokeDasharray="3 5" />
+      
+      {/* Pequenos quadrados decorativos */}
+      <rect x="45" y="8" width="4" height="4" fill="#1a5c38" opacity="0.6" />
+      <rect x="8" y="45" width="4" height="4" fill="#1a5c38" opacity="0.6" />
     </svg>
   );
 }
