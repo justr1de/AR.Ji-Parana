@@ -52,12 +52,24 @@ export default function RecuperarSenhaPage() {
         console.error('Erro ao salvar token:', tokenError);
       }
 
-      // Enviar email de recuperação usando Supabase Edge Function ou serviço externo
-      // Por enquanto, vamos simular o envio e mostrar o link (em produção, usar serviço de email)
-      const resetUrl = `${window.location.origin}/admin/redefinir-senha?token=${token}&email=${encodeURIComponent(email)}`;
-      
-      // Log do link para desenvolvimento (remover em produção)
-      console.log('Link de recuperação:', resetUrl);
+      // Enviar email de recuperação via API
+      const emailResponse = await fetch('/api/send-recovery-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: adminUser.email,
+          token: token,
+          userName: adminUser.name,
+        }),
+      });
+
+      if (!emailResponse.ok) {
+        const errorData = await emailResponse.json();
+        console.error('Erro ao enviar e-mail:', errorData);
+        // Mesmo com erro no envio, mostramos sucesso para não revelar se o email existe
+      }
 
       setSuccess(true);
     } catch (err) {
