@@ -75,8 +75,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Coluna 1: Bandeira + Endereço + ABAR */}
           <div className="lg:col-span-2">
-            {/* Bandeira de Ji-Paraná - Centralizada com moldura */}
-            <div className="mb-6 flex flex-col items-center">
+            {/* Bandeira de Ji-Paraná - Alinhada à esquerda com moldura */}
+            <div className="mb-6 flex flex-col items-start">
               <div className="p-3 bg-white/10 rounded-xl border-2 border-white/30 shadow-lg">
                 <Image
                   src="/bandeira-ji-parana.png"
