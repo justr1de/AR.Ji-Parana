@@ -274,13 +274,14 @@ function formatResponse(action: AssistantAction, data: any, query: string): stri
       }
       let docsResponse = `📄 **Encontrei ${data.length} documento(s):**\n\n`;
       data.forEach((doc: any, index: number) => {
-        const categoryLabel = {
+        const categoryLabels: Record<string, string> = {
           lei: '⚖️ Lei',
           resolucao: '📋 Resolução',
           relatorio: '📊 Relatório',
           audiencia: '👥 Audiência',
           outros: '📁 Outros',
-        }[doc.category] || doc.category;
+        };
+        const categoryLabel = categoryLabels[doc.category as string] || doc.category;
         docsResponse += `${index + 1}. **${doc.title}**\n   ${categoryLabel} | ${new Date(doc.created_at).toLocaleDateString('pt-BR')}\n`;
         if (doc.description) {
           docsResponse += `   ${doc.description.substring(0, 100)}...\n`;
@@ -309,12 +310,13 @@ function formatResponse(action: AssistantAction, data: any, query: string): stri
       }
       let eventsResponse = `📅 **Próximos eventos:**\n\n`;
       data.forEach((event: any, index: number) => {
-        const typeLabel = {
+        const typeLabels: Record<string, string> = {
           reuniao: '🤝 Reunião',
           audiencia: '👥 Audiência Pública',
           consulta: '📝 Consulta Pública',
           evento: '🎯 Evento',
-        }[event.type] || event.type;
+        };
+        const typeLabel = typeLabels[event.type as string] || event.type;
         eventsResponse += `${index + 1}. **${event.title}**\n   ${typeLabel}\n   📆 ${new Date(event.event_date).toLocaleDateString('pt-BR')}`;
         if (event.start_time) {
           eventsResponse += ` às ${event.start_time}`;
