@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import Link from 'next/link';
+import { LGPDPopup } from '@/components/LGPDPopup';
 
 interface AdminUser {
   id: string;
@@ -341,7 +342,12 @@ export default function UsuariosPage() {
                   <option value="super_admin">Super Administrador (acesso irrestrito)</option>
                 </select>
               </div>
-              <div className="flex justify-end gap-3 mt-6">
+              {/* Mensagem LGPD */}
+              <div className="mb-4 pt-4 border-t border-gray-200">
+                <LGPDPopup tipo="cadastro" />
+              </div>
+
+              <div className="flex justify-end gap-3 mt-4">
                 <button
                   type="button"
                   onClick={() => {

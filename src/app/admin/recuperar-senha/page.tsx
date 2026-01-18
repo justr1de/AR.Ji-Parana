@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
+import { LGPDPopup } from '@/components/LGPDPopup';
 
 export default function RecuperarSenhaPage() {
   const [email, setEmail] = useState('');
@@ -201,10 +202,8 @@ export default function RecuperarSenhaPage() {
             )}
 
             {/* Mensagem LGPD */}
-            <div className="mt-6 pt-6 border-t border-gray-200">
-              <p className="text-xs text-gray-500 text-center">
-                🔒 Todos os dados coletados respeitam às normas da LGPD (Lei Geral de Proteção de Dados).
-              </p>
+            <div className="mt-6 pt-6 border-t border-gray-200 flex justify-center">
+              <LGPDPopup tipo="recuperacao" />
             </div>
           </div>
         </div>
