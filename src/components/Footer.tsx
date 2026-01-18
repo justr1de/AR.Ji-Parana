@@ -46,15 +46,15 @@ export function Footer() {
             <div className="space-y-3 text-sm">
               <div className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                <span>Ji-Paraná, Rondônia - CEP: 76900-000</span>
+                <span>Rua do Brilhante, 130 - Urupá<br />Ji-Paraná - RO, CEP: 76.900-150</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4 flex-shrink-0" />
-                <span>(69) 3421-0000</span>
+                <span>(69) 3421-5996</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4 flex-shrink-0" />
-                <span>contato@agerji.ji-parana.ro.gov.br</span>
+                <span>agerji@ji-parana.ro.gov.br</span>
               </div>
               <div className="flex items-start gap-2">
                 <Clock className="h-4 w-4 mt-0.5 flex-shrink-0" />

@@ -84,9 +84,9 @@ export default function AtendimentoPage() {
                   <div>
                     <p className="font-medium text-foreground">Endereço</p>
                     <p className="text-sm text-muted-foreground">
-                      Ji-Paraná, Rondônia
+                      Rua do Brilhante, 130 - Urupá
                       <br />
-                      CEP: 76900-000
+                      Ji-Paraná - RO, CEP: 76.900-150
                     </p>
                   </div>
                 </div>
@@ -94,7 +94,7 @@ export default function AtendimentoPage() {
                   <Phone className="h-5 w-5 text-primary mt-0.5" />
                   <div>
                     <p className="font-medium text-foreground">Telefone</p>
-                    <p className="text-sm text-muted-foreground">(69) 3421-0000</p>
+                    <p className="text-sm text-muted-foreground">(69) 3421-5996</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -102,7 +102,7 @@ export default function AtendimentoPage() {
                   <div>
                     <p className="font-medium text-foreground">E-mail</p>
                     <p className="text-sm text-muted-foreground">
-                      contato@agerji.ji-parana.ro.gov.br
+                      agerji@ji-parana.ro.gov.br
                     </p>
                   </div>
                 </div>
