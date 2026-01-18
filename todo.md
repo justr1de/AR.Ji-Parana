@@ -45,3 +45,4 @@
 
 ## Ajustes Visuais
 - [x] Aumentar tamanho da logo AGERJI no cabeçalho
+- [x] Transformar logo AGERJI em favicon da página
