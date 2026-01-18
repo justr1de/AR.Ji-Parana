@@ -97,6 +97,17 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
                 Eventos
               </Link>
             </li>
+            <li>
+              <Link
+                href="/admin/dashboard/usuarios"
+                className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-green-700 transition-colors"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                Usuários
+              </Link>
+            </li>
           </ul>
         </nav>
 
@@ -104,12 +115,16 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
           <div className="flex items-center gap-3 mb-4">
             <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
               <span className="text-lg font-bold">
-                {user.email?.charAt(0).toUpperCase()}
+                {user.name?.charAt(0).toUpperCase() || user.email?.charAt(0).toUpperCase()}
               </span>
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium truncate">{user.email}</p>
-              <p className="text-xs text-green-200">Administrador</p>
+              <p className="text-sm font-medium truncate">{user.name || user.email}</p>
+              <p className="text-xs text-green-200">
+                {user.role === 'super_admin' ? 'Super Admin' : 
+                 user.role === 'admin' ? 'Administrador' : 
+                 user.role === 'editor' ? 'Editor' : 'Visualizador'}
+              </p>
             </div>
           </div>
           <button

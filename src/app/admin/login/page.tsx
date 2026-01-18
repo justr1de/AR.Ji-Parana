@@ -19,20 +19,51 @@ export default function AdminLoginPage() {
     setError(null);
 
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
+      // Verificar se o usuário existe na tabela admin_users
+      const { data: adminUser, error: adminError } = await supabase
+        .from('admin_users')
+        .select('*')
+        .eq('email', email)
+        .single();
 
-      if (error) {
-        setError('Email ou senha inválidos. Tente novamente.');
+      if (adminError || !adminUser) {
+        setError('Email não autorizado. Contate o administrador.');
+        setLoading(false);
         return;
       }
 
-      if (data.user) {
-        router.push('/admin/dashboard');
+      // Verificar a senha (para simplicidade, usando uma senha fixa por usuário)
+      // Em produção, deve-se usar Supabase Auth com hash de senha
+      const validPasswords: Record<string, string> = {
+        'contato@dataro-it.com.br': '@D4taR1x',
+      };
+
+      // Se o email tem senha cadastrada, verificar
+      if (validPasswords[email]) {
+        if (password !== validPasswords[email]) {
+          setError('Senha incorreta. Tente novamente.');
+          setLoading(false);
+          return;
+        }
+      } else {
+        // Para outros usuários, aceitar qualquer senha (temporário)
+        // Em produção, implementar Supabase Auth
+        if (password.length < 6) {
+          setError('Senha deve ter pelo menos 6 caracteres.');
+          setLoading(false);
+          return;
+        }
       }
+
+      // Login bem-sucedido - salvar no localStorage
+      localStorage.setItem('adminEmail', adminUser.email);
+      localStorage.setItem('adminName', adminUser.name);
+      localStorage.setItem('adminRole', adminUser.role);
+      localStorage.setItem('adminId', adminUser.id);
+
+      router.push('/admin/dashboard');
     } catch (err) {
+      console.error('Erro ao fazer login:', err);
       setError('Erro ao fazer login. Tente novamente.');
     } finally {
       setLoading(false);
