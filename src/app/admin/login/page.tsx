@@ -101,10 +101,14 @@ export default function AdminLoginPage() {
         <div className="w-full max-w-md">
           <div className="bg-white rounded-2xl shadow-2xl p-8">
             <div className="text-center mb-8">
-              <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-10 h-10 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
+              <div className="mx-auto mb-4">
+                <Image
+                  src="/agerji-logo.png"
+                  alt="AGERJI"
+                  width={100}
+                  height={100}
+                  className="mx-auto"
+                />
               </div>
               <h2 className="text-2xl font-bold text-gray-800">Área Administrativa</h2>
               <p className="text-gray-600 mt-2">Acesso restrito aos gestores da AGERJI</p>
