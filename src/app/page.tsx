@@ -1,7 +1,7 @@
 import { BannerCarousel } from "@/components/BannerCarousel";
 import { ServicesSection } from "@/components/ServicesSection";
 import { NewsSection } from "@/components/NewsSection";
-import { AgendaSection } from "@/components/AgendaSection";
+import { CalendarSection } from "@/components/CalendarSection";
 import { QuickLinks } from "@/components/QuickLinks";
 import { StatsSection } from "./sections/StatsSection";
 import { AboutSection } from "./sections/AboutSection";
@@ -15,9 +15,9 @@ export default function Home() {
       <ServicesSection />
       <StatsSection />
       <AboutSection />
+      <CalendarSection />
       <DocumentsSection />
       <NewsSection />
-      <AgendaSection />
       <ContactSection />
       <QuickLinks />
     </>
