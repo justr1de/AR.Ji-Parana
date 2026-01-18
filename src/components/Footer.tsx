@@ -232,7 +232,7 @@ export function Footer() {
             <p>
               Desenvolvido por{" "}
               <a
-                href="https://data-ro.com.br"
+                href="https://www.dataro-it.com.br"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline inline-flex items-center gap-1"

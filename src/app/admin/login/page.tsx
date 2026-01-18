@@ -200,7 +200,15 @@ export default function AdminLoginPage() {
         <p>© {new Date().getFullYear()} AGERJI - Agência Reguladora de Ji-Paraná</p>
         <p className="mt-1">Todos os Direitos Reservados</p>
         <p className="mt-2 text-xs text-white/50">
-          Desenvolvido por DATA-RO INTELIGÊNCIA TERRITORIAL
+          Desenvolvido por{" "}
+          <a
+            href="https://www.dataro-it.com.br"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline hover:text-white/70 transition-colors"
+          >
+            DATA-RO INTELIGÊNCIA TERRITORIAL
+          </a>
         </p>
       </footer>
     </div>

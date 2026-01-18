@@ -126,7 +126,14 @@ export default function SobrePage() {
               </div>
               <div>
                 <p className="text-sm text-gray-500 mb-1">Desenvolvido por</p>
-                <p className="text-xl font-bold text-gray-900">DATA-RO INTELIGÊNCIA TERRITORIAL</p>
+                <a
+                  href="https://www.dataro-it.com.br"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xl font-bold text-gray-900 hover:text-primary transition-colors"
+                >
+                  DATA-RO INTELIGÊNCIA TERRITORIAL
+                </a>
                 <p className="text-sm text-gray-500 mt-1">Autora exclusiva do projeto</p>
               </div>
             </div>

@@ -8,25 +8,28 @@ interface Stats {
   documents: number;
   news: number;
   events: number;
+  departments: number;
 }
 
 export default function DashboardPage() {
-  const [stats, setStats] = useState<Stats>({ documents: 0, news: 0, events: 0 });
+  const [stats, setStats] = useState<Stats>({ documents: 0, news: 0, events: 0, departments: 0 });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchStats() {
       try {
-        const [docsResult, newsResult, eventsResult] = await Promise.all([
+        const [docsResult, newsResult, eventsResult, deptsResult] = await Promise.all([
           supabase.from('documents').select('id', { count: 'exact', head: true }),
           supabase.from('news').select('id', { count: 'exact', head: true }),
           supabase.from('events').select('id', { count: 'exact', head: true }),
+          supabase.from('departments').select('id', { count: 'exact', head: true }),
         ]);
 
         setStats({
           documents: docsResult.count || 0,
           news: newsResult.count || 0,
           events: eventsResult.count || 0,
+          departments: deptsResult.count || 0,
         });
       } catch (error) {
         console.error('Erro ao buscar estatísticas:', error);
@@ -78,6 +81,19 @@ export default function DashboardPage() {
       color: 'bg-green-500',
       lightColor: 'bg-green-50',
     },
+    {
+      title: 'Departamentos',
+      count: stats.departments,
+      description: 'Setores e pastas organizacionais',
+      icon: (
+        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        </svg>
+      ),
+      href: '/admin/dashboard/departamentos',
+      color: 'bg-amber-500',
+      lightColor: 'bg-amber-50',
+    },
   ];
 
   const quickActions = [
@@ -87,6 +103,11 @@ export default function DashboardPage() {
       color: 'bg-blue-500',
       hoverColor: 'hover:bg-blue-100',
       bgColor: 'bg-blue-50',
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+        </svg>
+      ),
     },
     {
       title: 'Nova Notícia',
@@ -94,6 +115,11 @@ export default function DashboardPage() {
       color: 'bg-purple-500',
       hoverColor: 'hover:bg-purple-100',
       bgColor: 'bg-purple-50',
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+        </svg>
+      ),
     },
     {
       title: 'Novo Evento',
@@ -101,6 +127,53 @@ export default function DashboardPage() {
       color: 'bg-green-500',
       hoverColor: 'hover:bg-green-100',
       bgColor: 'bg-green-50',
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+        </svg>
+      ),
+    },
+  ];
+
+  const adminTools = [
+    {
+      title: 'Departamentos',
+      description: 'Gerencie setores e organize documentos por departamento',
+      href: '/admin/dashboard/departamentos',
+      color: 'bg-amber-500',
+      hoverColor: 'hover:bg-amber-100',
+      bgColor: 'bg-amber-50',
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        </svg>
+      ),
+    },
+    {
+      title: 'Relatórios',
+      description: 'Gere relatórios de atividades, documentos e auditoria',
+      href: '/admin/dashboard/relatorios',
+      color: 'bg-indigo-500',
+      hoverColor: 'hover:bg-indigo-100',
+      bgColor: 'bg-indigo-50',
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+      ),
+    },
+    {
+      title: 'Modelos de Documentos',
+      description: 'Acesse templates de ofícios, memorandos e pareceres',
+      href: '/admin/dashboard/modelos',
+      color: 'bg-teal-500',
+      hoverColor: 'hover:bg-teal-100',
+      bgColor: 'bg-teal-50',
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+        </svg>
+      ),
     },
   ];
 
@@ -120,7 +193,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Cards de estatísticas */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
           {cards.map((card) => (
             <Link
               key={card.title}
@@ -151,6 +224,34 @@ export default function DashboardPage() {
           ))}
         </div>
 
+        {/* Ferramentas Administrativas */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 mb-10">
+          <h2 className="text-xl font-bold text-gray-900 mb-6">
+            Ferramentas Administrativas
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {adminTools.map((tool) => (
+              <Link
+                key={tool.title}
+                href={tool.href}
+                className={`flex flex-col gap-3 p-6 ${tool.bgColor} ${tool.hoverColor} rounded-xl transition-all duration-200 hover:shadow-md group`}
+              >
+                <div className="flex items-center gap-4">
+                  <div className={`${tool.color} text-white p-3 rounded-lg shadow-sm group-hover:scale-105 transition-transform duration-200`}>
+                    {tool.icon}
+                  </div>
+                  <span className="font-bold text-gray-800 text-lg">
+                    {tool.title}
+                  </span>
+                </div>
+                <p className="text-sm text-gray-600 pl-1">
+                  {tool.description}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+
         {/* Ações rápidas */}
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
           <h2 className="text-xl font-bold text-gray-900 mb-6">
@@ -164,9 +265,7 @@ export default function DashboardPage() {
                 className={`flex items-center gap-4 p-5 ${action.bgColor} ${action.hoverColor} rounded-xl transition-colors duration-200`}
               >
                 <div className={`${action.color} text-white p-3 rounded-lg shadow-sm`}>
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                  </svg>
+                  {action.icon}
                 </div>
                 <span className="font-semibold text-gray-700">
                   {action.title}
