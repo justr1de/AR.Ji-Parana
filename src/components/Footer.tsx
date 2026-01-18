@@ -28,7 +28,7 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="bg-primary text-primary-foreground">
+    <footer className="bg-gradient-to-b from-[#1a5c38] via-[#1e6b40] to-[#0d3d24] text-primary-foreground">
       {/* Main footer */}
       <div className="container py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
@@ -129,7 +129,7 @@ export function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-primary-foreground/20">
+      <div className="border-t border-primary-foreground/20 bg-gradient-to-r from-[#0d3d24] via-[#145230] to-[#0d3d24]">
         <div className="container py-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
             <p className="text-primary-foreground/80">
