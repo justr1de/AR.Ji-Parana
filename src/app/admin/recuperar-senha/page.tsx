@@ -98,11 +98,11 @@ export default function RecuperarSenhaPage() {
           </div>
         </Link>
         <Image
-          src="/prefeitura-logo.png"
+          src="/prefeitura-ji-parana.png"
           alt="Prefeitura de Ji-Paraná"
-          width={50}
+          width={150}
           height={50}
-          className="h-10 w-auto"
+          className="h-auto w-auto max-h-12"
         />
       </header>
 

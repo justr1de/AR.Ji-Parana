@@ -269,9 +269,9 @@ export function Header({ onToggleContrast, highContrast }: HeaderProps) {
               <Image
                 src="/prefeitura-ji-parana.png"
                 alt="Prefeitura de Ji-Paraná"
-                width={140}
-                height={56}
-                className="h-10 md:h-12 w-auto"
+                width={180}
+                height={60}
+                className="h-auto w-auto max-h-14"
               />
             </a>
 
@@ -347,9 +347,9 @@ export function Header({ onToggleContrast, highContrast }: HeaderProps) {
                 <Image
                   src="/prefeitura-ji-parana.png"
                   alt="Prefeitura de Ji-Paraná"
-                  width={100}
-                  height={40}
-                  className="h-10 w-auto"
+                  width={150}
+                  height={50}
+                  className="h-auto w-auto max-h-12"
                 />
               </a>
             </div>

@@ -88,11 +88,11 @@ export default function AdminLoginPage() {
           </div>
         </Link>
         <Image
-          src="/prefeitura-logo.png"
+          src="/prefeitura-ji-parana.png"
           alt="Prefeitura de Ji-Paraná"
-          width={50}
+          width={150}
           height={50}
-          className="h-10 w-auto"
+          className="h-auto w-auto max-h-12"
         />
       </header>
 
@@ -104,10 +104,11 @@ export default function AdminLoginPage() {
               <div className="mx-auto mb-4">
                 <Image
                   src="/agerji-logo.png"
-                  alt="AGERJI"
-                  width={100}
-                  height={100}
-                  className="mx-auto"
+                  alt="AGERJI - Agência Reguladora de Ji-Paraná"
+                  width={280}
+                  height={200}
+                  className="mx-auto h-auto w-auto max-w-[280px]"
+                  priority
                 />
               </div>
               <h2 className="text-2xl font-bold text-gray-800">Área Administrativa</h2>
