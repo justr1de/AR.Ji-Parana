@@ -162,16 +162,16 @@ export function CalendarSection({ events = defaultEvents }: { events?: EventItem
   }
 
   return (
-    <section className="py-8 bg-gradient-to-b from-white to-secondary/20" aria-labelledby="calendar-title">
+    <section className="py-4 bg-gradient-to-b from-white to-secondary/20" aria-labelledby="calendar-title">
       <div className="container">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <CalendarDays className="h-6 w-6 text-primary" />
+            <CalendarDays className="h-4 w-4 text-primary" />
             <div>
-              <h2 id="calendar-title" className="text-xl md:text-2xl font-bold text-foreground">
+              <h2 id="calendar-title" className="text-base md:text-lg font-bold text-foreground">
                 Calendário de Eventos
               </h2>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-xs text-muted-foreground">
                 Acompanhe as atividades da AGERJI
               </p>
             </div>
@@ -184,37 +184,37 @@ export function CalendarSection({ events = defaultEvents }: { events?: EventItem
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
           {/* Calendário */}
           <Card className="lg:col-span-2 shadow-lg hover:shadow-xl transition-shadow duration-300">
-            <CardContent className="p-4">
+            <CardContent className="p-2">
               {/* Header do calendário */}
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-2">
                 <button
                   onClick={prevMonth}
-                  className="p-1.5 hover:bg-secondary rounded-lg transition-colors"
+                  className="p-1 hover:bg-secondary rounded-lg transition-colors"
                   aria-label="Mês anterior"
                 >
-                  <ChevronLeft className="h-4 w-4" />
+                  <ChevronLeft className="h-3 w-3" />
                 </button>
-                <h3 className="text-base font-semibold text-foreground">
+                <h3 className="text-sm font-semibold text-foreground">
                   {MONTHS[currentMonth]} {currentYear}
                 </h3>
                 <button
                   onClick={nextMonth}
-                  className="p-1.5 hover:bg-secondary rounded-lg transition-colors"
+                  className="p-1 hover:bg-secondary rounded-lg transition-colors"
                   aria-label="Próximo mês"
                 >
-                  <ChevronRight className="h-4 w-4" />
+                  <ChevronRight className="h-3 w-3" />
                 </button>
               </div>
 
               {/* Dias da semana */}
-              <div className="grid grid-cols-7 gap-0.5 mb-1">
+              <div className="grid grid-cols-7 gap-px mb-0.5">
                 {DAYS_OF_WEEK.map((day) => (
                   <div
                     key={day}
-                    className="text-center text-sm font-medium text-muted-foreground py-1"
+                    className="text-center text-[10px] font-medium text-muted-foreground py-0.5"
                   >
                     {day}
                   </div>
@@ -222,7 +222,7 @@ export function CalendarSection({ events = defaultEvents }: { events?: EventItem
               </div>
 
               {/* Dias do mês */}
-              <div className="grid grid-cols-7 gap-0.5">
+              <div className="grid grid-cols-7 gap-px">
                 {calendarDays.map((day, index) => {
                   if (day === null) {
                     return <div key={`empty-${index}`} className="aspect-square" />;
@@ -270,9 +270,9 @@ export function CalendarSection({ events = defaultEvents }: { events?: EventItem
               </div>
 
               {/* Legenda */}
-              <div className="flex flex-wrap gap-3 mt-4 pt-3 border-t border-border">
+              <div className="flex flex-wrap gap-2 mt-2 pt-2 border-t border-border">
                 {Object.entries(eventTypeLabels).map(([key, label]) => (
-                  <div key={key} className="flex items-center gap-1.5 text-xs">
+                  <div key={key} className="flex items-center gap-1 text-[10px]">
                     <span
                       className={`w-2 h-2 rounded-full ${eventTypeColors[key]}`}
                     />
@@ -285,8 +285,8 @@ export function CalendarSection({ events = defaultEvents }: { events?: EventItem
 
           {/* Lista de eventos */}
           <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
-            <CardContent className="p-4">
-              <h3 className="text-sm font-semibold text-foreground mb-3">
+            <CardContent className="p-2">
+              <h3 className="text-xs font-semibold text-foreground mb-2">
                 {selectedDate
                   ? `Eventos em ${selectedDate.toLocaleDateString("pt-BR", {
                       day: "2-digit",
@@ -296,11 +296,11 @@ export function CalendarSection({ events = defaultEvents }: { events?: EventItem
               </h3>
 
               {displayEvents.length > 0 ? (
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {displayEvents.map((event) => (
                     <div
                       key={event.id}
-                      className="p-3 bg-secondary/50 rounded-md border-l-3"
+                      className="p-2 bg-secondary/50 rounded-md border-l-2"
                       style={{
                         borderLeftColor:
                           event.event_type === "reuniao"

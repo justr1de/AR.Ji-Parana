@@ -17,9 +17,8 @@ export function SidebarImages() {
           className="h-full w-full"
           style={{
             backgroundImage: "url('/agerji-lateral.png')",
-            backgroundSize: "contain",
-            backgroundPosition: "center top",
-            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
         />
       </Link>
@@ -28,16 +27,15 @@ export function SidebarImages() {
         href="https://ji-parana.ro.gov.br/turismo"
         target="_blank"
         rel="noopener noreferrer"
-        className="h-1/2 w-full block transition-all duration-300 opacity-60 hover:opacity-90"
+        className="h-1/2 w-full block transition-all duration-300 opacity-60 hover:opacity-90 -mt-px"
         title="Conheça o turismo de Ji-Paraná"
       >
         <div 
           className="h-full w-full"
           style={{
             backgroundImage: "url('/jiparana-lateral.png')",
-            backgroundSize: "contain",
-            backgroundPosition: "center bottom",
-            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
         />
       </Link>
