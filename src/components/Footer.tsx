@@ -72,67 +72,66 @@ export function Footer() {
 
       {/* Main footer */}
       <div className="container py-12">
-        {/* Seção centralizada: Bandeira + ABAR na mesma linha */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mb-10 pb-10 border-b border-primary-foreground/20">
-          {/* Bandeira de Ji-Paraná - Centralizada com moldura e endereço abaixo */}
-          <div className="flex flex-col items-center text-center">
-            <div className="p-3 bg-white/10 rounded-xl border-2 border-white/30 shadow-lg mb-3">
-              <Image
-                src="/bandeira-ji-parana.png"
-                alt="Bandeira de Ji-Paraná"
-                width={160}
-                height={107}
-                className="h-24 w-auto rounded-lg"
-              />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          {/* Coluna 1: Bandeira + Endereço + ABAR */}
+          <div className="lg:col-span-2">
+            {/* Bandeira de Ji-Paraná - Centralizada com moldura */}
+            <div className="mb-6 flex flex-col items-center">
+              <div className="p-3 bg-white/10 rounded-xl border-2 border-white/30 shadow-lg">
+                <Image
+                  src="/bandeira-ji-parana.png"
+                  alt="Bandeira de Ji-Paraná"
+                  width={160}
+                  height={107}
+                  className="h-24 w-auto rounded-lg"
+                />
+              </div>
+              <p className="text-sm text-primary-foreground/70 mt-2 font-medium">Ji-Paraná - RO</p>
             </div>
-            <p className="text-sm text-primary-foreground/90 font-semibold mb-3">Ji-Paraná - RO</p>
             
-            {/* Endereço abaixo da bandeira */}
-            <div className="space-y-2 text-sm text-primary-foreground/80">
-              <div className="flex items-start gap-2 justify-center">
+            {/* Endereço e contato */}
+            <div className="space-y-3 text-sm">
+              <div className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
                 <span>Rua do Brilhante, 130 - Urupá<br />Ji-Paraná - RO, CEP: 76.900-150</span>
               </div>
-              <div className="flex items-center gap-2 justify-center">
+              <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4 flex-shrink-0" />
                 <span>(69) 3421-5996</span>
               </div>
-              <div className="flex items-center gap-2 justify-center">
+              <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4 flex-shrink-0" />
                 <a href="mailto:agerji@ji-parana.ro.gov.br" className="hover:underline">
                   agerji@ji-parana.ro.gov.br
                 </a>
               </div>
-              <div className="flex items-center gap-2 justify-center">
-                <Clock className="h-4 w-4 flex-shrink-0" />
+              <div className="flex items-start gap-2">
+                <Clock className="h-4 w-4 mt-0.5 flex-shrink-0" />
                 <span>Segunda a Sexta: 07:30 às 13:30</span>
               </div>
             </div>
+            
+            {/* ABAR Badge - Logo Colorida - Abaixo do endereço */}
+            <div className="mt-6 pt-6 border-t border-primary-foreground/20">
+              <p className="text-sm font-medium text-primary-foreground/90 mb-3">Membro da:</p>
+              <a
+                href="https://abar.org.br/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-white rounded-lg p-3 hover:shadow-lg transition-all"
+                title="ABAR - Associação Brasileira de Agências Reguladoras"
+              >
+                <Image
+                  src="/logo-abar.png"
+                  alt="ABAR - Associação Brasileira de Agências Reguladoras"
+                  width={160}
+                  height={96}
+                  className="h-14 w-auto"
+                />
+              </a>
+            </div>
           </div>
 
-          {/* ABAR Badge - Na mesma linha da bandeira */}
-          <div className="flex flex-col items-center text-center">
-            <p className="text-sm font-medium text-primary-foreground/90 mb-3">Membro da:</p>
-            <a
-              href="https://abar.org.br/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-white rounded-lg p-3 hover:shadow-lg transition-all"
-              title="ABAR - Associação Brasileira de Agências Reguladoras"
-            >
-              <Image
-                src="/logo-abar.png"
-                alt="ABAR - Associação Brasileira de Agências Reguladoras"
-                width={160}
-                height={96}
-                className="h-16 w-auto"
-              />
-            </a>
-          </div>
-        </div>
-
-        {/* Links do rodapé */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Institucional */}
           <div>
             <h3 className="font-semibold mb-4">Institucional</h3>
@@ -173,30 +172,30 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
-          
-          {/* Redes Sociais */}
-          <div>
-            <h3 className="font-semibold mb-4">Redes Sociais</h3>
-            <div className="flex gap-3">
-              <a
-                href="https://facebook.com/agerji"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
-                aria-label="Facebook da AGERJI"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a
-                href="https://instagram.com/agerji"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
-                aria-label="Instagram da AGERJI"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
+            
+            {/* Social Media */}
+            <div className="mt-6 pt-4 border-t border-primary-foreground/20">
+              <p className="text-sm font-medium mb-3">Redes Sociais</p>
+              <div className="flex gap-3">
+                <a
+                  href="https://facebook.com/agerji"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
+                  aria-label="Facebook da AGERJI"
+                >
+                  <Facebook className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://instagram.com/agerji"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
+                  aria-label="Instagram da AGERJI"
+                >
+                  <Instagram className="w-5 h-5" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
