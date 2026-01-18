@@ -67,139 +67,178 @@ interface HeaderProps {
   highContrast?: boolean;
 }
 
+// Componente SVG para linhas tecnológicas
+function TechLines({ position }: { position: "top-left" | "top-right" | "bottom-left" | "bottom-right" }) {
+  const transforms = {
+    "top-left": "",
+    "top-right": "scale(-1, 1)",
+    "bottom-left": "scale(1, -1)",
+    "bottom-right": "scale(-1, -1)",
+  };
+
+  return (
+    <svg
+      className={`absolute w-24 h-24 opacity-[0.15] ${
+        position === "top-left" ? "top-0 left-0" :
+        position === "top-right" ? "top-0 right-0" :
+        position === "bottom-left" ? "bottom-0 left-0" :
+        "bottom-0 right-0"
+      }`}
+      viewBox="0 0 100 100"
+      fill="none"
+      style={{ transform: transforms[position] }}
+    >
+      {/* Linhas horizontais */}
+      <line x1="0" y1="10" x2="60" y2="10" stroke="#1a5c38" strokeWidth="0.5" />
+      <line x1="0" y1="20" x2="40" y2="20" stroke="#1a5c38" strokeWidth="0.5" />
+      <line x1="0" y1="30" x2="25" y2="30" stroke="#1a5c38" strokeWidth="0.5" />
+      
+      {/* Linhas verticais */}
+      <line x1="10" y1="0" x2="10" y2="60" stroke="#1a5c38" strokeWidth="0.5" />
+      <line x1="20" y1="0" x2="20" y2="40" stroke="#1a5c38" strokeWidth="0.5" />
+      <line x1="30" y1="0" x2="30" y2="25" stroke="#1a5c38" strokeWidth="0.5" />
+      
+      {/* Pontos de conexão */}
+      <circle cx="10" cy="10" r="2" fill="#1a5c38" />
+      <circle cx="20" cy="20" r="1.5" fill="#1a5c38" />
+      <circle cx="30" cy="10" r="1" fill="#1a5c38" />
+      <circle cx="10" cy="30" r="1" fill="#1a5c38" />
+      
+      {/* Linha diagonal */}
+      <line x1="5" y1="5" x2="45" y2="45" stroke="#1a5c38" strokeWidth="0.3" strokeDasharray="2 4" />
+    </svg>
+  );
+}
+
 export function Header({ onToggleContrast, highContrast }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
 
   return (
     <header className="sticky top-0 z-50">
-      {/* Header com imagem de fundo */}
-      <div className="relative">
-        {/* Fundo verde institucional */}
-        <div className="absolute inset-0 w-full h-full bg-primary" />
-
-        {/* Accessibility bar */}
-        <div className="relative z-10 text-white text-sm">
-          <div className="container flex items-center justify-between py-2">
-            <nav className="hidden md:flex items-center gap-4" aria-label="Links de acessibilidade">
-              <a href="#main-content" className="hover:underline focus:underline">
-                Ir para o conteúdo [1]
-              </a>
-              <a href="#navigation" className="hover:underline focus:underline">
-                Ir para a navegação [2]
-              </a>
-              <a href="#search" className="hover:underline focus:underline">
-                Ir para a busca [3]
-              </a>
-            </nav>
-            <div className="flex items-center gap-4 ml-auto">
-              <button
-                onClick={onToggleContrast}
-                className="flex items-center gap-1 hover:underline focus:underline"
-                aria-pressed={highContrast}
-              >
-                <Eye className="h-4 w-4" />
-                <span>Contraste</span>
-              </button>
-              <span className="hidden md:inline">|</span>
-              <span className="hidden md:inline font-medium">PREFEITURA DE JI-PARANÁ</span>
-            </div>
+      {/* Barra superior verde */}
+      <div className="bg-primary text-white text-sm">
+        <div className="container flex items-center justify-between py-2">
+          <nav className="hidden md:flex items-center gap-4" aria-label="Links de acessibilidade">
+            <a href="#main-content" className="hover:underline focus:underline">
+              Ir para o conteúdo [1]
+            </a>
+            <a href="#navigation" className="hover:underline focus:underline">
+              Ir para a navegação [2]
+            </a>
+            <a href="#search" className="hover:underline focus:underline">
+              Ir para a busca [3]
+            </a>
+          </nav>
+          <div className="flex items-center gap-4 ml-auto">
+            <button
+              onClick={onToggleContrast}
+              className="flex items-center gap-1 hover:underline focus:underline"
+              aria-pressed={highContrast}
+            >
+              <Eye className="h-4 w-4" />
+              <span>Contraste</span>
+            </button>
+            <span className="hidden md:inline">|</span>
+            <span className="hidden md:inline font-medium">PREFEITURA DE JI-PARANÁ</span>
           </div>
         </div>
+      </div>
 
-        {/* Main header content */}
-        <div className="relative z-10">
-          <div className="container">
-            <div className="flex items-center justify-between py-4">
-              {/* Logo AGERJI */}
-              <Link href="/" className="flex items-center">
-                <div className="bg-white/95 backdrop-blur-sm rounded-lg p-2 shadow-lg">
-                  <Image
-                    src="/images/logo-agerji.png"
-                    alt="AGERJI - Agência Reguladora de Ji-Paraná"
-                    width={240}
-                    height={100}
-                    className="h-16 md:h-24 w-auto"
-                    priority
-                  />
-                </div>
-              </Link>
+      {/* Header principal branco com linhas tecnológicas */}
+      <div className="relative bg-white border-b border-gray-100 shadow-sm overflow-hidden">
+        {/* Linhas tecnológicas nos cantos */}
+        <TechLines position="top-left" />
+        <TechLines position="top-right" />
+        <TechLines position="bottom-left" />
+        <TechLines position="bottom-right" />
 
-              {/* Desktop navigation */}
-              <nav id="navigation" className="hidden lg:flex items-center gap-1" aria-label="Menu principal">
-                {menuItems.map((item) => (
-                  <div key={item.label} className="relative group">
-                    {item.submenu ? (
-                      <>
-                        <button
-                          className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-white hover:text-green-300 transition-colors drop-shadow-md"
-                          onMouseEnter={() => setOpenSubmenu(item.label)}
-                          onMouseLeave={() => setOpenSubmenu(null)}
-                        >
-                          {item.label}
-                          <ChevronDown className="h-4 w-4" />
-                        </button>
-                        <div
-                          className={`absolute top-full left-0 bg-white border border-gray-200 rounded-md shadow-lg py-2 min-w-[200px] transition-all ${
-                            openSubmenu === item.label ? "opacity-100 visible" : "opacity-0 invisible"
-                          }`}
-                          onMouseEnter={() => setOpenSubmenu(item.label)}
-                          onMouseLeave={() => setOpenSubmenu(null)}
-                        >
-                          {item.submenu.map((subitem) => (
-                            <Link
-                              key={subitem.href}
-                              href={subitem.href}
-                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-primary transition-colors"
-                            >
-                              {subitem.label}
-                            </Link>
-                          ))}
-                        </div>
-                      </>
-                    ) : (
-                      <Link
-                        href={item.href}
-                        className="px-3 py-2 text-sm font-medium text-white hover:text-green-300 transition-colors drop-shadow-md"
+        <div className="container relative z-10">
+          <div className="flex items-center justify-between py-4">
+            {/* Logo AGERJI */}
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/images/logo-agerji.png"
+                alt="AGERJI - Agência Reguladora de Ji-Paraná"
+                width={240}
+                height={100}
+                className="h-16 md:h-24 w-auto"
+                priority
+              />
+            </Link>
+
+            {/* Desktop navigation */}
+            <nav id="navigation" className="hidden lg:flex items-center gap-1" aria-label="Menu principal">
+              {menuItems.map((item) => (
+                <div key={item.label} className="relative group">
+                  {item.submenu ? (
+                    <>
+                      <button
+                        className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors"
+                        onMouseEnter={() => setOpenSubmenu(item.label)}
+                        onMouseLeave={() => setOpenSubmenu(null)}
                       >
                         {item.label}
-                      </Link>
-                    )}
-                  </div>
-                ))}
-              </nav>
-
-              {/* Logo ABAR */}
-              <a
-                href="https://abar.org.br/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden md:block"
-                title="ABAR - Associação Brasileira de Agências Reguladoras"
-              >
-                <div className="bg-white/95 backdrop-blur-sm rounded-lg p-2 shadow-lg">
-                  <Image
-                    src="/images/logo-abar.png"
-                    alt="ABAR - Associação Brasileira de Agências Reguladoras"
-                    width={100}
-                    height={60}
-                    className="h-10 w-auto"
-                  />
+                        <ChevronDown className="h-4 w-4" />
+                      </button>
+                      <div
+                        className={`absolute top-full left-0 bg-white border border-gray-200 rounded-md shadow-lg py-2 min-w-[200px] transition-all ${
+                          openSubmenu === item.label ? "opacity-100 visible" : "opacity-0 invisible"
+                        }`}
+                        onMouseEnter={() => setOpenSubmenu(item.label)}
+                        onMouseLeave={() => setOpenSubmenu(null)}
+                      >
+                        {item.submenu.map((subitem) => (
+                          <Link
+                            key={subitem.href}
+                            href={subitem.href}
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-primary transition-colors"
+                          >
+                            {subitem.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  )}
                 </div>
-              </a>
+              ))}
+            </nav>
 
-              {/* Mobile menu button */}
-              <Button
-                variant="ghost"
-                size="icon"
-                className="lg:hidden text-white hover:bg-white/20"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                aria-expanded={mobileMenuOpen}
-                aria-label="Menu"
-              >
-                {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </Button>
-            </div>
+            {/* Logo ABAR */}
+            <a
+              href="https://abar.org.br/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:block"
+              title="ABAR - Associação Brasileira de Agências Reguladoras"
+            >
+              <Image
+                src="/images/logo-abar.png"
+                alt="ABAR - Associação Brasileira de Agências Reguladoras"
+                width={100}
+                height={60}
+                className="h-10 w-auto"
+              />
+            </a>
+
+            {/* Mobile menu button */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="lg:hidden text-gray-700 hover:bg-gray-100"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-expanded={mobileMenuOpen}
+              aria-label="Menu"
+            >
+              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </Button>
           </div>
         </div>
       </div>

@@ -53,3 +53,4 @@
 - [x] Adaptar imagem aérea de Ji-Paraná como fundo do cabeçalho
 - [x] Ajustar opacidade da imagem do cabeçalho para 8%
 - [x] Remover imagem do cabeçalho
+- [x] Cabeçalho branco com linhas tecnológicas sutis nos cantos
