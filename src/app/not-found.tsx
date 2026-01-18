@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Home, ArrowLeft } from "lucide-react";
+import { Home } from "lucide-react";
 
 export default function NotFound() {
   return (
@@ -20,10 +20,6 @@ export default function NotFound() {
               Ir para a Home
             </Button>
           </Link>
-          <Button variant="outline" onClick={() => history.back()} className="gap-2">
-            <ArrowLeft className="h-4 w-4" />
-            Voltar
-          </Button>
         </div>
       </div>
     </div>
