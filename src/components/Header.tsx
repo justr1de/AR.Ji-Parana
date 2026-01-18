@@ -207,9 +207,9 @@ export function Header({ onToggleContrast, highContrast }: HeaderProps) {
               <Image
                 src="/images/logo-agerji.png"
                 alt="AGERJI - Agência Reguladora de Ji-Paraná"
-                width={300}
-                height={120}
-                className="h-14 md:h-16 w-auto"
+                width={400}
+                height={160}
+                className="h-20 md:h-24 w-auto"
                 priority
               />
             </Link>
