@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth, AuthProvider } from '@/contexts/AuthContext';
 import Link from 'next/link';
 import Image from 'next/image';
+import { AssistenteAdmin } from '@/components/AssistenteAdmin';
 
 function AdminLayoutContent({ children }: { children: React.ReactNode }) {
   const { user, loading, signOut } = useAuth();
@@ -158,8 +159,11 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-auto">
+      <main className="flex-1 overflow-auto relative">
         {children}
+        
+        {/* Assistente Administrativo - apenas na área logada */}
+        <AssistenteAdmin />
       </main>
     </div>
   );
