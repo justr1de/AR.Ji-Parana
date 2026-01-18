@@ -47,3 +47,4 @@
 - [x] Aumentar tamanho da logo AGERJI no cabeçalho
 - [x] Transformar logo AGERJI em favicon da página
 - [x] Adicionar bandeira de Ji-Paraná no rodapé
+- [x] Remover quadrado branco (logo AGERJI) abaixo da bandeira e arredondar cantos da bandeira

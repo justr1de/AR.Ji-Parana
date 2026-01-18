@@ -41,17 +41,7 @@ export function Footer() {
                 alt="Bandeira de Ji-Paraná"
                 width={120}
                 height={80}
-                className="h-16 w-auto"
-              />
-            </div>
-            
-            <div className="flex items-center gap-4 mb-6">
-              <Image
-                src="/images/logo-agerji.png"
-                alt="AGERJI"
-                width={140}
-                height={60}
-                className="h-14 w-auto brightness-0 invert"
+                className="h-16 w-auto rounded-lg"
               />
             </div>
             <div className="space-y-3 text-sm">
