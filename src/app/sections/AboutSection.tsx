@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Shield, Target, Award, Lightbulb, ChevronRight } from "lucide-react";
-import { AssistenteVirtual } from "@/components/AssistenteVirtual";
+import Image from "next/image";
+import { Shield, Target, Award, Lightbulb, ChevronRight, Users, Scale, FileCheck } from "lucide-react";
 
 export function AboutSection() {
   return (
@@ -77,20 +77,56 @@ export function AboutSection() {
             </Link>
           </div>
           
-          {/* Assistente Virtual */}
-          <div>
-            <div className="mb-4">
-              <span className="text-primary font-semibold text-sm uppercase tracking-wider">
-                Atendimento Online
-              </span>
-              <h3 className="text-2xl font-bold text-gray-900 mt-1">
-                Assistente Virtual
-              </h3>
-              <p className="text-gray-500 text-sm mt-1">
-                Tire suas dúvidas sobre nossos serviços de forma rápida e prática
-              </p>
+          {/* Área de Atuação - substituindo o Assistente Virtual */}
+          <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+              Áreas de Atuação
+            </h3>
+            
+            <div className="space-y-6">
+              <div className="flex gap-4 p-4 bg-primary/5 rounded-xl hover:bg-primary/10 transition-colors">
+                <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-1">Saneamento Básico</h4>
+                  <p className="text-sm text-gray-600">Regulação dos serviços de abastecimento de água, esgotamento sanitário e drenagem urbana.</p>
+                </div>
+              </div>
+              
+              <div className="flex gap-4 p-4 bg-primary/5 rounded-xl hover:bg-primary/10 transition-colors">
+                <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-1">Resíduos Sólidos</h4>
+                  <p className="text-sm text-gray-600">Fiscalização da coleta, tratamento e destinação final de resíduos sólidos urbanos.</p>
+                </div>
+              </div>
+              
+              <div className="flex gap-4 p-4 bg-primary/5 rounded-xl hover:bg-primary/10 transition-colors">
+                <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-1">Transporte Público</h4>
+                  <p className="text-sm text-gray-600">Controle e fiscalização dos serviços de transporte coletivo municipal.</p>
+                </div>
+              </div>
             </div>
-            <AssistenteVirtual />
+            
+            <div className="mt-6 pt-6 border-t border-gray-100">
+              <div className="flex items-center gap-3 text-sm text-gray-600">
+                <Users className="w-5 h-5 text-primary" />
+                <span>Atendendo mais de <strong>150 mil cidadãos</strong> em Ji-Paraná</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
