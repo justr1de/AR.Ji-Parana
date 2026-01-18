@@ -42,3 +42,6 @@
 - [x] Atualizar Header com informações corretas
 - [x] Adicionar informações sobre serviços regulados
 - [x] Adicionar legislação de criação da agência
+
+## Ajustes Visuais
+- [x] Aumentar tamanho da logo AGERJI no cabeçalho
