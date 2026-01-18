@@ -75,9 +75,15 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Coluna 1: Bandeira + Endereço + ABAR */}
           <div className="lg:col-span-2">
-            {/* Bandeira de Ji-Paraná - Alinhada à esquerda com moldura */}
+            {/* Bandeira de Ji-Paraná - Alinhada à esquerda com moldura e link */}
             <div className="mb-6 flex flex-col items-start">
-              <div className="p-3 bg-white/10 rounded-xl border-2 border-white/30 shadow-lg">
+              <a
+                href="https://ji-parana.ro.gov.br"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 bg-white/10 rounded-xl border-2 border-white/30 shadow-lg hover:bg-white/20 hover:shadow-xl transition-all"
+                title="Acesse o site da Prefeitura de Ji-Paraná"
+              >
                 <Image
                   src="/bandeira-ji-parana.png"
                   alt="Bandeira de Ji-Paraná"
@@ -85,7 +91,7 @@ export function Footer() {
                   height={107}
                   className="h-24 w-auto rounded-lg"
                 />
-              </div>
+              </a>
               <p className="text-sm text-primary-foreground/70 mt-2 font-medium">Ji-Paraná - RO</p>
             </div>
             
