@@ -109,6 +109,24 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
               </Link>
             </li>
           </ul>
+
+          {/* Separador */}
+          <div className="my-4 border-t border-green-700"></div>
+
+          {/* Link discreto para Sobre o Projeto */}
+          <ul className="space-y-2">
+            <li>
+              <Link
+                href="/admin/dashboard/sobre"
+                className="flex items-center gap-3 px-4 py-2 rounded-lg text-green-300 hover:text-white hover:bg-green-700/50 transition-colors text-sm"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Sobre o Projeto
+              </Link>
+            </li>
+          </ul>
         </nav>
 
         <div className="p-4 border-t border-green-700">
@@ -136,12 +154,6 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
             </svg>
             Sair
           </button>
-        </div>
-
-        {/* Footer com DATA-RO */}
-        <div className="p-4 text-center text-xs text-green-300 border-t border-green-700">
-          <p>Desenvolvido por</p>
-          <p className="font-semibold">DATA-RO INTELIGÊNCIA TERRITORIAL</p>
         </div>
       </aside>
 
