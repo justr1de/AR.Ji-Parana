@@ -227,30 +227,30 @@ Posso ajudar com algo mais?`;
 
   return (
     <div 
-      className={`fixed bottom-4 right-4 z-50 bg-white rounded-xl shadow-xl border border-gray-200 transition-all duration-300 ${
-        isMinimized ? "w-64 h-12" : "w-80 max-h-[450px]"
+      className={`fixed bottom-4 right-4 z-50 bg-white rounded-2xl shadow-2xl border border-gray-200 transition-all duration-300 ${
+        isMinimized ? "w-72 h-14" : "w-[400px] max-h-[580px]"
       }`}
     >
       {/* Header */}
-      <div className="bg-gradient-to-r from-[#1a5c38] to-[#1e6b40] text-white p-2.5 rounded-t-xl">
+      <div className="bg-gradient-to-r from-[#1a5c38] to-[#1e6b40] text-white p-3.5 rounded-t-2xl">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 bg-white/20 rounded-full flex items-center justify-center">
-              <Bot className="w-4 h-4" />
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 bg-white/20 rounded-full flex items-center justify-center">
+              <Bot className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-sm font-semibold">Assistente AGERJI</h3>
+              <h3 className="text-base font-semibold">Assistente Virtual AGERJI</h3>
               {!isMinimized && (
-                <p className="text-[10px] text-white/80">Tire suas dúvidas</p>
+                <p className="text-xs text-white/80">Tire suas dúvidas sobre nossos serviços</p>
               )}
             </div>
           </div>
           <button
             onClick={() => setIsMinimized(!isMinimized)}
-            className="p-1.5 hover:bg-white/20 rounded-lg transition-colors"
+            className="p-2 hover:bg-white/20 rounded-lg transition-colors"
             aria-label={isMinimized ? "Expandir" : "Minimizar"}
           >
-            {isMinimized ? <Maximize2 className="w-4 h-4" /> : <Minimize2 className="w-4 h-4" />}
+            {isMinimized ? <Maximize2 className="w-5 h-5" /> : <Minimize2 className="w-5 h-5" />}
           </button>
         </div>
       </div>
@@ -258,39 +258,39 @@ Posso ajudar com algo mais?`;
       {!isMinimized && (
         <>
           {/* Messages */}
-          <div className="h-40 overflow-y-auto p-3 space-y-3 bg-gray-50">
+          <div className="h-52 overflow-y-auto p-4 space-y-4 bg-gray-50">
             {messages.map((msg) => (
               <div
                 key={msg.id}
                 className={`flex gap-2 ${msg.role === "user" ? "justify-end" : "justify-start"}`}
               >
                 {msg.role === "assistant" && (
-                  <div className="w-6 h-6 bg-[#1a5c38] rounded-full flex items-center justify-center flex-shrink-0">
-                    <Bot className="w-3 h-3 text-white" />
+                  <div className="w-8 h-8 bg-[#1a5c38] rounded-full flex items-center justify-center flex-shrink-0">
+                    <Bot className="w-4 h-4 text-white" />
                   </div>
                 )}
                 <div
-                  className={`max-w-[85%] rounded-xl px-3 py-1.5 ${
+                  className={`max-w-[85%] rounded-xl px-4 py-2 ${
                     msg.role === "user"
                       ? "bg-[#1a5c38] text-white rounded-br-sm"
                       : "bg-white text-gray-700 shadow-sm border border-gray-100 rounded-bl-sm"
                   }`}
                 >
-                  <p className="text-xs whitespace-pre-line">{msg.content}</p>
+                  <p className="text-sm whitespace-pre-line">{msg.content}</p>
                 </div>
                 {msg.role === "user" && (
-                  <div className="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
-                    <User className="w-3 h-3 text-gray-600" />
+                  <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
+                    <User className="w-4 h-4 text-gray-600" />
                   </div>
                 )}
               </div>
             ))}
             {isLoading && (
               <div className="flex gap-2 justify-start">
-                <div className="w-6 h-6 bg-[#1a5c38] rounded-full flex items-center justify-center flex-shrink-0">
-                  <Bot className="w-3 h-3 text-white" />
+                <div className="w-8 h-8 bg-[#1a5c38] rounded-full flex items-center justify-center flex-shrink-0">
+                  <Bot className="w-4 h-4 text-white" />
                 </div>
-                <div className="bg-white rounded-xl rounded-bl-sm px-3 py-2 shadow-sm border border-gray-100">
+                <div className="bg-white rounded-xl rounded-bl-sm px-4 py-2.5 shadow-sm border border-gray-100">
                   <div className="flex gap-1">
                     <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
                     <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
@@ -302,25 +302,25 @@ Posso ajudar com algo mais?`;
           </div>
 
           {/* Quick Actions */}
-          <div className="p-2 border-t border-gray-100 bg-white">
-            <div className="flex flex-wrap gap-1">
+          <div className="p-3 border-t border-gray-100 bg-white">
+            <div className="flex flex-wrap gap-1.5">
               {defaultQueries.slice(0, 4).map((item) => (
                 <button
                   key={item.label}
                   onClick={() => handleSend(item.query)}
-                  className="text-[10px] px-2 py-1 bg-gray-100 hover:bg-[#1a5c38] hover:text-white rounded-full transition-colors"
+                  className="text-xs px-3 py-1.5 bg-gray-100 hover:bg-[#1a5c38] hover:text-white rounded-full transition-colors"
                   disabled={isLoading}
                 >
                   {item.label}
                 </button>
               ))}
             </div>
-            <div className="flex flex-wrap gap-1 mt-1">
+            <div className="flex flex-wrap gap-1.5 mt-1.5">
               {defaultQueries.slice(4).map((item) => (
                 <button
                   key={item.label}
                   onClick={() => handleSend(item.query)}
-                  className="text-[10px] px-2 py-1 bg-gray-100 hover:bg-[#1a5c38] hover:text-white rounded-full transition-colors"
+                  className="text-xs px-3 py-1.5 bg-gray-100 hover:bg-[#1a5c38] hover:text-white rounded-full transition-colors"
                   disabled={isLoading}
                 >
                   {item.label}
@@ -330,33 +330,33 @@ Posso ajudar com algo mais?`;
           </div>
 
           {/* Input */}
-          <div className="p-2 border-t border-gray-200 bg-white rounded-b-xl">
+          <div className="p-3 border-t border-gray-200 bg-white rounded-b-2xl">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
                 handleSend();
               }}
-              className="flex gap-1.5"
+              className="flex gap-2"
             >
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Digite sua pergunta..."
-                className="flex-1 px-3 py-1.5 border border-gray-200 rounded-full text-xs focus:outline-none focus:ring-1 focus:ring-[#1a5c38] focus:border-transparent"
+                className="flex-1 px-4 py-2 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#1a5c38] focus:border-transparent"
                 disabled={isLoading}
               />
               <Button
                 type="submit"
                 size="icon"
-                className="rounded-full bg-[#1a5c38] hover:bg-[#1e6b40] w-7 h-7"
+                className="rounded-full bg-[#1a5c38] hover:bg-[#1e6b40] w-9 h-9"
                 disabled={isLoading || !input.trim()}
               >
-                <Send className="w-3 h-3" />
+                <Send className="w-4 h-4" />
               </Button>
             </form>
-            <p className="text-[10px] text-gray-400 text-center mt-1">
-              Atendimento: (69) 3421-5996
+            <p className="text-xs text-gray-400 text-center mt-2">
+              Para atendimento personalizado: (69) 3421-5996
             </p>
           </div>
         </>
