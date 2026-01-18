@@ -50,3 +50,4 @@
 - [x] Remover quadrado branco (logo AGERJI) abaixo da bandeira e arredondar cantos da bandeira
 - [x] Adicionar degradê em tons de verde no rodapé
 - [x] Criar popup de cookies LGPD que sobe do rodapé
+- [x] Adaptar imagem aérea de Ji-Paraná como fundo do cabeçalho
