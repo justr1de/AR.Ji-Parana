@@ -155,6 +155,7 @@ export function AssistenteVirtualFixo() {
   const [isMinimized, setIsMinimized] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
+  const [isAdminArea, setIsAdminArea] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "welcome",
@@ -164,6 +165,17 @@ export function AssistenteVirtualFixo() {
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  // Verificar se está na área administrativa
+  useEffect(() => {
+    const checkAdminArea = () => {
+      setIsAdminArea(window.location.pathname.startsWith('/admin/dashboard'));
+    };
+    checkAdminArea();
+    // Observar mudanças de rota
+    window.addEventListener('popstate', checkAdminArea);
+    return () => window.removeEventListener('popstate', checkAdminArea);
+  }, []);
 
   // Detectar se é mobile e inicializar minimizado
   useEffect(() => {
@@ -254,6 +266,11 @@ Posso ajudar com algo mais?`;
     setIsMinimized(!isMinimized);
     setShowTooltip(false);
   };
+
+  // Não renderizar na área administrativa (usa AssistenteAdmin)
+  if (isAdminArea) {
+    return null;
+  }
 
   return (
     <div className="fixed bottom-6 right-4 md:right-8 z-50">
