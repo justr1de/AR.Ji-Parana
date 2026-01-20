@@ -37,7 +37,7 @@ const quickAccessLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-gradient-to-b from-[#1a5c38] via-[#1e6b40] to-[#0d3d24] text-primary-foreground">
+    <footer className="bg-gradient-to-b from-[#1a5c38] via-[#1e6b40] to-[#0d3d24] text-primary-foreground lg:pl-72">
       {/* Quick Access Bar */}
       <div className="bg-[#145230] py-6">
         <div className="container">

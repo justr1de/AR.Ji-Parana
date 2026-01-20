@@ -68,3 +68,6 @@
 - [x] Incluir estatísticas de documentos, pastas e atividades recentes
 - [x] Implementar upload de documentos por departamento/pasta
 - [x] Adicionar gráfico de documentos por departamento
+
+## Correções de Layout - Janeiro 2026
+- [x] Corrigir sobreposição da barra lateral esquerda sobre o conteúdo das páginas

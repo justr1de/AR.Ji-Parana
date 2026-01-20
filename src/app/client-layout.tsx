@@ -25,7 +25,7 @@ export function ClientLayout({ children }: ClientLayoutProps) {
       </a>
       <SidebarImages />
       <Header onToggleContrast={toggleContrast} highContrast={highContrast} />
-      <main id="main-content" className="flex-1">
+      <main id="main-content" className="flex-1 lg:pl-72">
         {children}
       </main>
       <Footer />
