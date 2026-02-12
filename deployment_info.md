@@ -15,7 +15,7 @@
 
 ## Supabase
 - **Project**: AR.Ji-Parana
-- **URL**: https://eottitzcsqsfclhigfmb.supabase.co
+- **URL**: https://lefgieldkkeazjckimtr.supabase.co
 
 ## Funcionalidades Implementadas
 - [x] Header institucional com logo AGERJI e ABAR
